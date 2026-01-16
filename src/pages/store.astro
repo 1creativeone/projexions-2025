@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+// Store page - Digital tools for purchase
+
+const allTools = await getCollection('store');
+const sortedTools = allTools.sort((a, b) => {
+  // Featured products first
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  // Then by title
+  return a.data.title.localeCompare(b.data.title);
+});
+---
+
+<BaseLayout
+  title="Store — Projexions"
+  description="Digital tools available for purchase, including assessments and organizational systems designed for self-guided use."
+  currentPath="/store"
+>
+  <div class="page-container">
+    <h1 class="serif-heading text-4xl font-semibold mb-6 text-center">Store</h1>
+    <p class="text-lg leading-relaxed mb-8 text-center">The tools available here are designed to help businesses understand, assess, and organize their financial records—particularly during tax season or periods of cleanup.</p>
+
+    <!-- Store listing -->
+    {sortedTools.length > 0 ? (
+      <>
+        <div class="products-grid">
+          {sortedTools.slice(0, 4).map((tool) => (
+            <a href={`/store/${tool.slug}`} class="product-card-link">
+              <article class="product-card">
+                {tool.data.heroImage && (
+                  <div class="product-card-image">
+                    <img
+                      src={tool.data.heroImage}
+                      alt={`${tool.data.title} - ${tool.data.description}`}
+                      class="w-full h-48 object-cover"
+                    />
+                  </div>
+                )}
+                <div class="product-card-content">
+                  <h2 class="product-card-title">
+                    {tool.data.title}
+                  </h2>
+                  <p class="product-card-description">{tool.data.description}</p>
+                  <div class="product-card-footer">
+                    <span class="product-price">{tool.data.price === 0 ? 'Free' : `$${tool.data.price}`}</span>
+                    <span class="product-detail-link">
+                      View details →
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </a>
+          ))}
+        </div>
+        {sortedTools.length > 4 && (
+          <div class="section-cta" style="margin-top: 3rem;">
+            <button id="show-more-products" style="color: #1B3A2F; text-decoration: none; font-weight: 500; font-size: 1.0625rem; background-color: #F5F5F3; padding: 0.75rem 1.5rem; border-radius: 4px; border: none; cursor: pointer;">View more products →</button>
+          </div>
+        )}
+        <div id="additional-products" class="products-grid" style="display: none; margin-top: 2rem;">
+          {sortedTools.slice(4).map((tool) => (
+            <a href={`/store/${tool.slug}`} class="product-card-link">
+              <article class="product-card">
+                {tool.data.heroImage && (
+                  <div class="product-card-image">
+                    <img
+                      src={tool.data.heroImage}
+                      alt={`${tool.data.title} - ${tool.data.description}`}
+                      class="w-full h-48 object-cover"
+                    />
+                  </div>
+                )}
+                <div class="product-card-content">
+                  <h2 class="product-card-title">
+                    {tool.data.title}
+                  </h2>
+                  <p class="product-card-description">{tool.data.description}</p>
+                  <div class="product-card-footer">
+                    <span class="product-price">{tool.data.price === 0 ? 'Free' : `$${tool.data.price}`}</span>
+                    <span class="product-detail-link">
+                      View details →
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </a>
+          ))}
+        </div>
+      </>
+    ) : (
+      <div class="mt-12">
+        <p class="text-lg">Tools coming soon.</p>
+      </div>
+    )}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const showMoreBtn = document.getElementById('show-more-products');
+        const additionalProducts = document.getElementById('additional-products');
+
+        if (showMoreBtn && additionalProducts) {
+          showMoreBtn.addEventListener('click', () => {
+            additionalProducts.style.display = 'grid';
+            showMoreBtn.style.display = 'none';
+          });
+        }
+      });
+    </script>
+
+    <!-- Store disclaimer -->
+    <div class="product-disclaimer">
+      <p class="text-sm">
+        <strong>Note:</strong> All products are intended for educational and organizational purposes only.
+        They are not accounting or tax advice, and they do not replace professional services.
+        <a href="/disclaimer" class="text-brand-green ml-1">View full disclaimer</a>
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .product-disclaimer {
+    margin-top: 3rem;
+    padding: 1rem;
+    border-left: 4px solid var(--brand-green);
+    background-color: var(--bg-section-alt);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .product-card-link {
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+  }
+
+  .product-card-link:focus,
+  .product-card-link:focus-visible {
+    outline: none;
+  }
+
+  .product-card {
+    background-color: white;
+    border: 1px solid var(--brand-green);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .product-card-link:hover .product-card {
+    box-shadow: 0 2px 8px rgba(27, 58, 47, 0.15);
+  }
+
+  .product-card-image {
+    width: 100%;
+    background-color: var(--bg-section-alt);
+  }
+
+  .product-card-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .product-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--ui-gray);
+    line-height: 1.3;
+    min-height: 5.2rem;
+    color: var(--text-charcoal);
+  }
+
+  .product-card-description {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--text-charcoal);
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .product-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ui-gray);
+    margin-top: auto;
+  }
+
+  .product-price {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--text-charcoal);
+    font-family: 'Lora', Georgia, serif;
+  }
+
+  .product-detail-link {
+    color: var(--brand-green);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: opacity 0.15s ease;
+  }
+
+  .product-detail-link:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  @media (min-width: 640px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+    }
+  }
+</style>

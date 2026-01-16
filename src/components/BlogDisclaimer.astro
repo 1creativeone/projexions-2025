@@ -1,0 +1,32 @@
+---
+// Inline blog disclaimer component
+// Should appear at footer of every blog post or small note at top/bottom
+---
+
+<div class="blog-disclaimer">
+  <p>
+    <strong>Disclaimer:</strong> This content is provided for general informational purposes only and does not constitute accounting, tax, or financial advice. 
+    <a href="/disclaimer" class="text-brand-green">Read full disclaimer</a>.
+  </p>
+</div>
+
+<style>
+  .blog-disclaimer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ui-gray);
+    font-size: 0.875rem;
+    color: var(--text-charcoal);
+  }
+
+  .blog-disclaimer a {
+    color: var(--brand-green);
+    text-decoration: none;
+  }
+
+  .blog-disclaimer a:hover {
+    color: var(--brand-green);
+    opacity: 0.8;
+  }
+</style>
+

@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+// Homepage per PRD section 5.1
+
+const articles = await getCollection('articles');
+const latestArticles = articles
+  .sort((a, b) => {
+    // Featured articles first
+    if (a.data.featured && !b.data.featured) return -1;
+    if (!a.data.featured && b.data.featured) return 1;
+    // Then by date
+    return b.data.pubDate.getTime() - a.data.pubDate.getTime();
+  })
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title="Projexions — Financial Support, Insights & Resources"
+  description="Flexible bookkeeping and financial support for growing businesses in West Hollywood. Get practical insights, resources, and tools to bring clarity to your business finances."
+  currentPath="/"
+>
+  <!-- Hero Section -->
+  <section class="homepage-hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title serif-heading">Financial Clarity When Records Matter</h1>
+        <p class="hero-subtitle">Projexions helps businesses bring order to financial records—particularly when bookkeeping is behind, tax filing is approaching, or clarity is required before moving forward.</p>
+        <p class="hero-body">Projexions focuses on cleanup, organization, and practical decision-support—so records hold up when timing, filings, or outside review make accuracy unavoidable.</p>
+        <div class="hero-actions">
+          <a href="/contact" class="btn-primary">Get Started</a>
+          <a href="/services" class="btn-secondary">Our Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tax Season Callout -->
+  <section class="homepage-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title-large">Tax Season Exposes Weak Records</h2>
+        <div class="title-underline"></div>
+      </div>
+      <div class="section-content-wide">
+        <p class="text-xl leading-relaxed mb-8 serif-heading" style="font-size: 1.5rem; font-weight: 500;">
+          Tax season rarely creates problems—it reveals them.
+        </p>
+
+        <p class="text-xl leading-relaxed mb-6">
+          Unreconciled accounts, missing documentation, and inconsistent records often accumulate quietly. They become unavoidable when records are needed for filing, financing, or external review.
+        </p>
+
+        <p class="text-xl leading-relaxed mb-8 serif-heading" style="font-size: 1.375rem; font-weight: 500;">
+          At that point, clarity is no longer optional.
+        </p>
+
+        <p class="text-xl leading-relaxed mb-4">
+          Projexions helps businesses understand record condition before pressure escalates—through tools, reference material, and focused cleanup services:
+        </p>
+
+        <ul class="homepage-list">
+          <li>What actually requires immediate attention</li>
+          <li>What can reasonably be deferred</li>
+          <li>How much work is involved before engaging a CPA or tax professional</li>
+        </ul>
+
+        <p class="text-xl leading-relaxed mb-8" style="margin-top: 2rem;">
+          The objective is usable, defensible financial information when it matters.
+        </p>
+
+        <div class="section-cta">
+          <a href="/store" class="btn-primary">View Store</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Articles -->
+  <section class="homepage-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title-large">Latest Articles</h2>
+        <div class="title-underline"></div>
+      </div>
+      <p class="section-intro">Articles covering bookkeeping cleanup, tax-season preparation, and financial organization.</p>
+
+      {latestArticles.length > 0 ? (
+        <div class="blog-cards-grid">
+          {latestArticles.map((article) => (
+            <a href={`/articles/${article.slug}`} class="blog-card-link">
+              <article class="blog-card">
+                <h3 class="blog-card-title">
+                  {article.data.title}
+                </h3>
+                <p class="blog-card-description">{article.data.description}</p>
+                <span class="blog-card-read">Read article →</span>
+              </article>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="text-lg">Content coming soon.</p>
+      )}
+
+      <div class="section-cta">
+        <a href="/articles" style="color: #1B3A2F; text-decoration: none; font-weight: 500; font-size: 1.0625rem; background-color: #F5F5F3; padding: 0.75rem 1.5rem; border-radius: 4px; display: inline-block;">View all articles →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Store -->
+  <section class="homepage-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title-large">Store</h2>
+        <div class="title-underline"></div>
+      </div>
+      <p class="section-intro">Practical assessment products and guides to help you get organized and stay on top of your business finances.</p>
+      <div class="resources-list">
+        <div class="resource-list-item">
+          <h3 class="resource-list-title">Financial Reality Check</h3>
+          <p class="resource-list-description">A diagnostic tool to assess your current financial situation and identify areas needing attention.</p>
+          <a href="/store/financial-records-control-center" class="link-arrow">View product →</a>
+        </div>
+        <div class="resource-list-item">
+          <h3 class="resource-list-title">Bookkeeping Cleanup Checklist</h3>
+          <p class="resource-list-description">A step-by-step checklist for organizing and cleaning up your bookkeeping records.</p>
+          <a href="/store/bookkeeping-cleanup-scope-assessment" class="link-arrow">View product →</a>
+        </div>
+        <div class="resource-list-item">
+          <h3 class="resource-list-title">Year-End / CPA Readiness Guide</h3>
+          <p class="resource-list-description">Everything you need to organize and prepare your records for your CPA or tax filing.</p>
+          <a href="/store/cpa-readiness-review" class="link-arrow">View product →</a>
+        </div>
+      </div>
+      <div class="section-cta mt-8">
+        <a href="/store" class="btn-primary">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="homepage-cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to bring clarity to your business finances?</h2>
+        <p class="cta-subtitle">Looking for bookkeeping support in West Hollywood?</p>
+        <a href="/contact" class="btn-cta-inverse">Get Started Today</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

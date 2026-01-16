@@ -1,0 +1,262 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+// Contact page - Updated with Netlify form and split layout
+---
+
+<BaseLayout
+  title="Contact — Projexions"
+  description="Contact Projexions for bookkeeping support in West Hollywood and financial assistance for your business."
+  currentPath="/contact"
+>
+  <div class="page-container">
+    <h1 class="serif-heading text-4xl font-semibold mb-6 text-center">Contact</h1>
+
+    <p class="text-lg mb-12 leading-relaxed text-center">
+      Projexions works with businesses seeking clarity and organization in their financial records.
+    </p>
+
+    <div class="contact-split">
+      <!-- Form Card -->
+      <div class="contact-card">
+        <h2 class="text-2xl font-semibold mb-6 text-center">Send a Message</h2>
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="contact-form"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+
+          <!-- Honeypot field for spam protection -->
+          <p class="hidden">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          </p>
+
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="phone">Phone</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              aria-required="true"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="cta-button">
+            Send Message
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Info Card -->
+      <div class="contact-card contact-info">
+        <h2 class="text-2xl font-semibold mb-6 text-center">Get in Touch</h2>
+
+        <div class="contact-info-section">
+          <h3 class="contact-info-label">Email</h3>
+          <p class="contact-info-value">
+            <a href="mailto:info@projexions.com">info@projexions.com</a>
+          </p>
+        </div>
+
+        <div class="contact-info-section">
+          <h3 class="contact-info-label">Phone</h3>
+          <p class="contact-info-value">
+            <a href="tel:+13104618786">(310) 461-8786</a>
+          </p>
+        </div>
+
+        <div class="contact-info-section">
+          <h3 class="contact-info-label">Location</h3>
+          <p class="contact-info-value">
+            West Hollywood, CA
+          </p>
+        </div>
+
+        <div class="contact-info-section">
+          <h3 class="contact-info-label">Follow on X</h3>
+          <p class="contact-info-value">
+            <a href="https://x.com/projexions_hq" target="_blank" rel="noopener noreferrer" class="social-link">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </p>
+        </div>
+
+        <div class="contact-info-note">
+          <p class="text-sm">
+            Inquiries related to services or available tools may be submitted using the form.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .contact-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .contact-card {
+    background: white;
+    border: 1px solid var(--ui-gray);
+    padding: 2.5rem;
+    border-radius: 4px;
+  }
+
+  .contact-card h2 {
+    color: var(--text-charcoal);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-field label {
+    font-weight: 500;
+    color: var(--text-charcoal);
+    font-size: 0.95rem;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--ui-gray);
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 1rem;
+    background: white;
+    transition: border-color 0.2s ease;
+  }
+
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: var(--brand-green);
+    outline: none;
+  }
+
+  .form-field textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .contact-info-section {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--ui-gray);
+  }
+
+  .contact-info-section:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .contact-info-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-charcoal);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-info-value {
+    font-size: 1.1rem;
+    color: var(--text-charcoal);
+    margin: 0;
+  }
+
+  .contact-info-value a {
+    color: var(--brand-green);
+    text-decoration: none;
+  }
+
+  .contact-info-value a:hover {
+    text-decoration: underline;
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .social-link svg {
+    flex-shrink: 0;
+  }
+
+  .contact-info-note {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    color: var(--text-charcoal);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .contact-split {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      padding: 1.5rem;
+    }
+  }
+</style>

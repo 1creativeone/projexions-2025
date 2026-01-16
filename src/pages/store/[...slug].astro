@@ -1,0 +1,186 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+
+export async function getStaticPaths() {
+  const tools = await getCollection('store');
+  return tools.map((tool) => ({
+    params: { slug: tool.slug },
+    props: { tool },
+  }));
+}
+
+const { tool } = Astro.props;
+const { Content } = await tool.render();
+---
+
+<BaseLayout
+  title={`${tool.data.title} — Projexions`}
+  description={tool.data.description}
+  currentPath={`/store/${tool.slug}`}
+>
+  <!-- Product Schema Markup for SEO -->
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": tool.data.title,
+    "description": tool.data.description,
+    "image": tool.data.heroImage ? `https://projexions.com${tool.data.heroImage}` : undefined,
+    "offers": {
+      "@type": "Offer",
+      "url": `https://projexions.com/store/${tool.slug}`,
+      "priceCurrency": "USD",
+      "price": tool.data.price,
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Projexions"
+      }
+    },
+    "brand": {
+      "@type": "Organization",
+      "name": "Projexions"
+    }
+  })} />
+
+  <div class="container py-16">
+    <PageHeader
+      title={tool.data.title}
+      subtitle={tool.data.description}
+    />
+
+    <div class="product-layout">
+      <!-- Main Content -->
+      <div class="product-content">
+        {tool.data.heroImage && (
+          <div class="product-images mb-8">
+            <img src={tool.data.heroImage} alt={tool.data.title} class="product-image" />
+          </div>
+        )}
+
+        <div class="prose-content">
+          <Content />
+        </div>
+      </div>
+
+      <!-- Sidebar with purchase -->
+      <aside class="product-sidebar">
+        <div class="product-purchase-card">
+          <div class="product-price">
+            <span class="price-amount">${tool.data.price}</span>
+          </div>
+
+          <a
+            href={tool.data.lemonsqueezyUrl}
+            class="lemonsqueezy-button cta-button w-full text-center block"
+          >
+            Purchase Tool
+          </a>
+
+          {tool.data.includes && tool.data.includes.length > 0 && (
+            <div class="product-includes mt-6">
+              <h3 class="text-lg font-semibold mb-3">What's Included:</h3>
+              <ul class="space-y-2">
+                {tool.data.includes.map((item) => (
+                  <li class="flex items-start">
+                    <span class="text-brand-green mr-2">✓</span>
+                    <span class="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </aside>
+    </div>
+
+    {tool.data.disclaimer && (
+      <div class="product-disclaimer mt-12">
+        <p class="text-sm">
+          <strong>Note:</strong> This tool is intended for educational and organizational purposes only. It does not constitute financial, legal, or tax advice. Consult with qualified professionals for guidance specific to your situation.
+        </p>
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .product-images {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--ui-gray);
+  }
+
+  .product-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .product-disclaimer {
+    padding: 1.5rem;
+    border-left: 4px solid var(--brand-green);
+    background-color: var(--bg-section-alt);
+    border-radius: 4px;
+  }
+
+  .product-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .product-content {
+    max-width: 65ch;
+  }
+
+  .product-sidebar {
+    order: -1;
+  }
+
+  .product-purchase-card {
+    background-color: white;
+    border: 2px solid var(--brand-green);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+
+  .product-price {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .price-amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--brand-green);
+    font-family: 'Lora', Georgia, serif;
+  }
+
+  .product-includes ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .product-includes li {
+    line-height: 1.6;
+  }
+
+  @media (min-width: 768px) {
+    .product-layout {
+      grid-template-columns: 1fr 320px;
+    }
+
+    .product-sidebar {
+      order: 0;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .product-layout {
+      grid-template-columns: 1fr 380px;
+    }
+  }
+</style>

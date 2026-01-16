@@ -1,0 +1,5 @@
+# robots.txt for Projexions
+User-agent: *
+Allow: /
+
+Sitemap: https://projexions.com/sitemap.xml

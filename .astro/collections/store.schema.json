@@ -1,0 +1,51 @@
+{
+  "$ref": "#/definitions/store",
+  "definitions": {
+    "store": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "heroImage": {
+          "type": "string"
+        },
+        "lemonsqueezyUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "includes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "disclaimer": {
+          "type": "boolean",
+          "default": true
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "price",
+        "includes"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

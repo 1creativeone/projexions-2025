@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+// Local SEO page per PRD Addendum section 3
+---
+
+<BaseLayout
+  title="Bookkeeping in West Hollywood — Projexions"
+  description="Projexions provides bookkeeping and financial support to businesses in West Hollywood and surrounding areas."
+  currentPath="/bookkeeping-west-hollywood"
+>
+  <!-- LocalBusiness Schema Markup for Local SEO -->
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Projexions",
+    "description": "Professional bookkeeping and financial support for businesses in West Hollywood",
+    "url": "https://projexions.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "West Hollywood",
+      "addressRegion": "CA",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "34.0900",
+      "longitude": "-118.3617"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "West Hollywood"
+    },
+    "serviceType": ["Bookkeeping", "Financial Support", "Accounting Services"],
+    "priceRange": "$$"
+  })} />
+
+  <div class="page-container">
+    <h1 class="serif-heading text-4xl font-semibold mb-6 text-center">Bookkeeping in West Hollywood</h1>
+    <p class="text-lg leading-relaxed mb-8 text-center">Professional bookkeeping and financial support for businesses in West Hollywood and surrounding areas.</p>
+
+    <div class="prose-content mb-12">
+      <p class="text-lg leading-relaxed mb-6">
+        Projexions provides bookkeeping and financial support to businesses in West Hollywood and surrounding areas.
+      </p>
+
+      <p class="text-lg leading-relaxed mb-6">
+        Services include bookkeeping cleanup, ongoing monthly bookkeeping, reconciliations, and general financial organization.
+        Engagements range from short-term assistance to ongoing support, depending on the needs of the business.
+      </p>
+
+      <p class="text-lg leading-relaxed mb-6">
+        Whether you need help catching up on overdue records, preparing for tax season, or establishing ongoing monthly
+        bookkeeping processes, we work with each business individually to understand their specific situation and provide
+        tailored support.
+      </p>
+    </div>
+
+    <!-- CTA per PRD -->
+    <section class="cta-section">
+      <h2 class="text-2xl font-semibold mb-4">Get Started</h2>
+      <p class="mb-6 text-lg">Need bookkeeping in West Hollywood?</p>
+      <p class="mb-6">Contact Projexions to discuss your situation.</p>
+      <a href="/contact" class="cta-button">Contact Projexions</a>
+    </section>
+  </div>
+</BaseLayout>

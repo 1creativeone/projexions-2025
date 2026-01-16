@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Organize site pages by category
+const sitePages = {
+  'Main Pages': [
+    { href: '/', label: 'Home', description: 'Financial support, insights, and resources for growing businesses' },
+    { href: '/services', label: 'Services', description: 'Bookkeeping and financial support services' },
+    { href: '/articles', label: 'Articles', description: 'Practical insights on bookkeeping and financial management' },
+    { href: '/store', label: 'Store', description: 'Assessment products and guides for financial organization' },
+    { href: '/about', label: 'About', description: 'Learn about Projexions and our approach' },
+    { href: '/contact', label: 'Contact', description: 'Get in touch for bookkeeping support' },
+  ],
+  'Local': [
+    { href: '/bookkeeping-west-hollywood', label: 'Bookkeeping in West Hollywood', description: 'Local bookkeeping services in West Hollywood' },
+  ],
+  'Legal': [
+    { href: '/privacy-policy', label: 'Privacy Policy', description: 'How we collect, use, and protect your information' },
+    { href: '/terms-of-service', label: 'Terms of Service', description: 'Terms and conditions for using our services' },
+    { href: '/disclaimer', label: 'Disclaimer', description: 'Important disclaimers about our content and services' },
+    { href: '/cookie-policy', label: 'Cookie Policy', description: 'How we use cookies on our website' },
+    { href: '/do-not-sell', label: 'Do Not Sell My Personal Information', description: 'California privacy rights under CCPA' },
+  ],
+};
+---
+
+<BaseLayout
+  title="Sitemap — Projexions"
+  description="Complete sitemap of all pages on Projexions. Find bookkeeping services, financial resources, blog posts, and more."
+  currentPath="/sitemap"
+>
+  <div class="page-container">
+    <h1 class="serif-heading text-4xl font-semibold mb-6 text-center">Sitemap</h1>
+    <p class="text-lg leading-relaxed mb-8 text-center">
+      Find everything on Projexions. Browse our complete site structure to quickly navigate to the page you need.
+    </p>
+
+    <div class="sitemap-sections">
+      {Object.entries(sitePages).map(([category, pages]) => (
+        <section class="sitemap-section">
+          <h2 class="sitemap-category">{category}</h2>
+          <ul class="sitemap-list">
+            {pages.map((page) => (
+              <li class="sitemap-item">
+                <a href={page.href} class="sitemap-link">
+                  <span class="sitemap-link-title">{page.label}</span>
+                  <span class="sitemap-link-description">{page.description}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+
+    <div class="sitemap-footer">
+      <p class="text-sm">
+        Looking for the XML sitemap for search engines? Visit <a href="/sitemap.xml" class="text-brand-green">/sitemap.xml</a>
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .sitemap-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .sitemap-section {
+    border-left: 3px solid var(--brand-green);
+    padding-left: 1.5rem;
+  }
+
+  .sitemap-category {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-charcoal);
+    margin-bottom: 1rem;
+  }
+
+  .sitemap-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sitemap-item {
+    margin: 0;
+  }
+
+  .sitemap-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: var(--bg-off-white);
+    border: 1px solid var(--ui-gray);
+    text-decoration: none;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .sitemap-link:hover {
+    border-color: var(--brand-green);
+    background-color: white;
+    cursor: pointer;
+  }
+
+  .sitemap-link-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--brand-green);
+  }
+
+  .sitemap-link-description {
+    font-size: 0.9375rem;
+    color: var(--text-gray);
+    line-height: 1.5;
+  }
+
+  .sitemap-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--ui-gray);
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .sitemap-sections {
+      gap: 4rem;
+    }
+
+    .sitemap-section {
+      padding-left: 2rem;
+    }
+
+    .sitemap-list {
+      gap: 1.25rem;
+    }
+
+    .sitemap-link {
+      padding: 1.25rem;
+    }
+  }
+</style>

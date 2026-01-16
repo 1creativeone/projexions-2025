@@ -1,0 +1,122 @@
+---
+// Footer requirements from PRD:
+// Left/Center: Projexions, Financial & bookkeeping support
+// Right/Bottom: "Bookkeeping services in West Hollywood", Privacy Policy, Terms of Service, Disclaimer, Contact link
+---
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <h3 class="footer-brand-name">Projexions, Inc.</h3>
+        <p class="footer-tagline">Bookkeeping services in West Hollywood</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="/contact">Contact</a>
+        <a href="/about">About</a>
+        <a href="/sitemap">Sitemap</a>
+        <a href="/privacy-policy">Privacy</a>
+        <a href="/terms-of-service">Terms</a>
+        <a href="/disclaimer">Disclaimer</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {new Date().getFullYear()} Projexions, Inc. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--brand-green);
+    border-top: 1px solid var(--brand-green);
+    padding: 3rem 0 1.5rem;
+  }
+
+  .footer-container {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1.5rem;
+  }
+
+  .footer-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .footer-brand-name {
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 0.375rem;
+    color: var(--bg-off-white);
+  }
+
+  .footer-tagline {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--bg-off-white);
+    opacity: 0.85;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-nav a {
+    color: var(--bg-off-white);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: opacity 0.15s ease;
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+
+  .footer-nav a:hover {
+    opacity: 1;
+  }
+
+  .footer-bottom {
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    font-size: 0.8125rem;
+    color: var(--bg-off-white);
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .footer-main {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 3rem;
+      text-align: left;
+    }
+
+    .footer-brand {
+      text-align: left;
+    }
+
+    .footer-nav {
+      gap: 0.875rem 2rem;
+      justify-content: flex-end;
+    }
+
+    .footer-bottom {
+      text-align: center;
+    }
+  }
+</style>
+

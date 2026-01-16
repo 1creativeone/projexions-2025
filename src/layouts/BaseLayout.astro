@@ -1,0 +1,97 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  currentPath?: string;
+  ogImage?: string;
+  ogType?: string;
+}
+
+const { 
+  title, 
+  description = 'Projexions provides flexible financial support, insights, and tools designed to bring clarity and structure to business finances.',
+  currentPath = Astro.url.pathname,
+  ogImage = Astro.site ? new URL('/og-image.jpg', Astro.site).href : '',
+  ogType = 'website'
+} = Astro.props;
+
+const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:site_name" content="Projexions" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Projexions",
+      "url": Astro.site?.href || "https://projexions.com",
+      "description": description,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "West Hollywood",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "West Hollywood"
+      },
+      "serviceType": "Bookkeeping and Financial Support"
+    })} />
+    
+    <!-- Inter font (Primary Sans Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Lora (Serif for titles) -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Source Serif 4 (Secondary Serif for editorial/authority) -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+    <!-- Lemon Squeezy checkout overlay -->
+    <script is:inline src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    <Header currentPath={currentPath} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+

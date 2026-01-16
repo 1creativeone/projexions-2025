@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allArticles = await getCollection('articles');
+const sortedArticles = allArticles.sort((a, b) => {
+  // Featured articles first
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  // Then by date
+  return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+});
+const initialArticles = sortedArticles.slice(0, 4);
+const remainingArticles = sortedArticles.slice(4);
+const hasMore = remainingArticles.length > 0;
+---
+
+<BaseLayout
+  title="Articles — Projexions"
+  description="Articles covering bookkeeping cleanup, tax-season preparation, and financial organization. Written as reference material—not commentary or advice."
+  currentPath="/articles"
+>
+  <div class="page-container">
+    <h1 class="serif-heading text-4xl font-semibold mb-6 text-center">Articles</h1>
+    <p class="text-lg leading-relaxed mb-8 text-center">Articles covering bookkeeping cleanup, tax-season preparation, and financial organization.<br>Written as reference material—not commentary or advice.</p>
+
+    {initialArticles.length > 0 ? (
+      <>
+        <div class="blog-cards-grid articles-grid-2col" id="articles-grid">
+          {initialArticles.map((article) => (
+            <a href={`/articles/${article.slug}`} class="blog-card-link">
+              <article class="blog-card">
+                <h3 class="blog-card-title">
+                  {article.data.title}
+                </h3>
+                <p class="blog-card-description">{article.data.description}</p>
+                <span class="blog-card-read">Read article →</span>
+              </article>
+            </a>
+          ))}
+          <div id="more-articles" style="display: none; contents: '';">
+            {remainingArticles.map((article) => (
+              <a href={`/articles/${article.slug}`} class="blog-card-link">
+                <article class="blog-card">
+                  <h3 class="blog-card-title">
+                    {article.data.title}
+                  </h3>
+                  <p class="blog-card-description">{article.data.description}</p>
+                  <span class="blog-card-read">Read article →</span>
+                </article>
+              </a>
+            ))}
+          </div>
+        </div>
+        {hasMore && (
+          <div class="view-more-section">
+            <button id="load-more-btn" style="color: #1B3A2F; text-decoration: none; font-weight: 500; font-size: 1.0625rem; background-color: #F5F5F3; padding: 0.75rem 1.5rem; border-radius: 4px; border: none; cursor: pointer;">
+              View all articles ({sortedArticles.length})
+            </button>
+          </div>
+        )}
+      </>
+    ) : (
+      <p class="text-lg">Content coming soon.</p>
+    )}
+  </div>
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const moreArticles = document.getElementById('more-articles');
+
+    if (loadMoreBtn && moreArticles) {
+      loadMoreBtn.addEventListener('click', () => {
+        moreArticles.style.display = 'contents';
+        loadMoreBtn.style.display = 'none';
+      });
+    }
+  });
+</script>
+
+<style>
+  .view-more-section {
+    margin-top: 3rem;
+    padding: 2rem 0;
+    text-align: center;
+  }
+</style>
