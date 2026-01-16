@@ -28,6 +28,7 @@ pnpm-debug.log*
 # Project documentation (not for repo)
 *.md
 !README.md
+!src/content/**/*.md
 
 # Tools/resources page (not ready for launch)
 src/pages/tools.astro
