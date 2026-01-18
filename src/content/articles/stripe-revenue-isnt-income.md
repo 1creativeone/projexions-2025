@@ -34,19 +34,18 @@ Accounting answers different ones.
 
 ## What Stripe Is Actually Reporting
 
-At its core, **:contentReference[oaicite:0]{index=0}** reports **payment activity**, not business results.
+At its core, Stripe reports **payment activity**, not business results.
 
 Depending on the view, Stripe may show:
-- gross charges before fees  
-- captured payments  
-- refunds and disputes  
-- net payouts sent to the bank  
-- subscription metrics tied to billing events  
+- gross charges before fees
+- captured payments
+- refunds and disputes
+- net payouts sent to the bank
+- subscription metrics tied to billing events
 
 Each of these is real. None of them represent income on their own.
 
-Stripe shows *what happened within Stripe*.  
-Accounting exists to explain *what that activity means* for the business.
+Stripe shows *what happened within Stripe*. Accounting exists to explain *what that activity means* for the business.
 
 ## Why Stripe Payouts Don’t Match Expectations
 
@@ -58,78 +57,68 @@ A business sees:
 - fees deducted automatically
 - refunds processed days or weeks later
 
-The instinct is to ask:
-“Where did the rest go?”
+The instinct is to ask: “Where did the rest go?”
 
-Nothing is missing.  
-The systems are simply operating on different timelines.
+Nothing is missing. The systems are simply operating on different timelines.
 
-Fees are deducted at settlement.  
-Refunds occur after the original transaction.  
-Disputes may reverse revenue long after it was recorded.
+Fees are deducted at settlement. Refunds occur after the original transaction. Disputes may reverse revenue long after it was recorded.
 
 Accounting exists to reconcile those differences across time—not eliminate them.
 
 ## Revenue, Cash, and Timing Are Different Concepts
 
-Stripe makes money movement visible.  
-Accounting makes timing intelligible.
+Stripe makes money movement visible. Accounting makes timing intelligible.
 
-Revenue may be recognized when a service is delivered.  
-Cash may arrive days later.  
-Refunds may reverse activity long after both.
+Revenue may be recognized when a service is delivered. Cash may arrive days later. Refunds may reverse activity long after both.
 
 When these concepts are blurred, businesses end up:
-- overstating income  
-- misjudging profitability  
-- underestimating tax exposure  
-- questioning reports that are actually correct  
+- overstating income
+- misjudging profitability
+- underestimating tax exposure
+- questioning reports that are actually correct
 
-Stripe isn’t hiding information.  
-It simply isn’t responsible for resolving these distinctions.
+Stripe isn’t hiding information. It simply isn’t responsible for resolving these distinctions.
 
 ## Why This Becomes a Problem at Tax Time
 
 Many businesses can operate comfortably using Stripe dashboards alone—until records are reviewed externally.
 
 Tax preparation and professional review require:
-- consistent categorization  
-- stable totals  
-- traceable balances  
-- explanations that don’t change over time  
+- consistent categorization
+- stable totals
+- traceable balances
+- explanations that don’t change over time
 
 Stripe activity must be translated into records that meet those standards.
 
 When that translation hasn’t happened, confusion appears suddenly—often under deadline pressure.
 
-The issue isn’t Stripe.  
-It’s assuming Stripe output is accounting-ready.
+The issue isn’t Stripe. It’s assuming Stripe output is accounting-ready.
 
 ## What Stripe Data Is Best Used For
 
 Stripe data is extremely valuable when used correctly.
 
 It is best suited for:
-- operational monitoring  
-- payment flow visibility  
-- customer billing activity  
-- subscription management  
+- operational monitoring
+- payment flow visibility
+- customer billing activity
+- subscription management
 
 Accounting systems then use that data as an input—alongside bank activity, expense records, and business rules—to produce reviewable results.
 
-Platforms generate activity.  
-Systems create clarity.
+Platforms generate activity. Systems create clarity.
 
 ## The Real Fix Isn’t More Reports
 
 Adding more dashboards doesn’t solve this problem.
 
 Clarity comes from:
-- defining what revenue means for the business  
-- deciding how fees are treated  
-- handling refunds consistently  
-- reconciling Stripe activity to deposits  
-- keeping those rules stable over time  
+- defining what revenue means for the business
+- deciding how fees are treated
+- handling refunds consistently
+- reconciling Stripe activity to deposits
+- keeping those rules stable over time
 
 Once those decisions are made, Stripe numbers stop feeling mysterious.
 
@@ -139,17 +128,14 @@ They fall into place.
 
 Stripe revenue feels like income because it's visible, immediate, and precise.
 
-But accounting exists to answer a different question:
-What do these transactions actually mean for the business?
+But accounting exists to answer a different question: What do these transactions actually mean for the business?
 
-Stripe processes payments.
-Accounting provides interpretation.
+Stripe processes payments. Accounting provides interpretation.
 
-When the two are aligned, clarity follows.
-When they're conflated, confusion is inevitable.
+When the two are aligned, clarity follows. When they're conflated, confusion is inevitable.
 
 ---
 
-If tax season is approaching and your bookkeeping isn't clearly usable, Projexions offers a **Tax Season Bookkeeping Review** — a one-time, paid review to identify what's blocking a CPA from filing and what can wait.
+If tax season is approaching and your bookkeeping isn't clearly usable, Projexions offers a **Tax Season Bookkeeping Readiness** — a one-time, paid review to identify what's blocking a CPA from filing and what can wait.
 
 [Learn more →](/tax-season-bookkeeping-review)

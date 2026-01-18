@@ -82,8 +82,7 @@ another professional can follow the logic without relying on explanation
 
 The key distinction is this:
 
-Client-ready records reflect effort.
-CPA-ready records reflect structure.
+Client-ready records reflect effort. CPA-ready records reflect structure.
 
 When structure is in place, review becomes efficient. When it is missing, even well-intentioned bookkeeping can become unusable under scrutiny.
 ## Getting There
@@ -96,6 +95,6 @@ If you're not sure where your records stand, structured readiness tools can help
 
 ---
 
-If tax season is approaching and your bookkeeping isn't clearly usable, Projexions offers a **Tax Season Bookkeeping Review** — a one-time, paid review to identify what's blocking a CPA from filing and what can wait.
+If tax season is approaching and your bookkeeping isn't clearly usable, Projexions offers a **Tax Season Bookkeeping Readiness** — a one-time, paid review to identify what's blocking a CPA from filing and what can wait.
 
 [Learn more →](/tax-season-bookkeeping-review)

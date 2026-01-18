@@ -87,8 +87,7 @@ consistency that does not rely on memory
 
 Automation is most effective when it replaces repetition, not when it compensates for missing structure.
 
-When structure exists, automation can be powerful.
-When it doesn’t, automation simply accelerates confusion.
+When structure exists, automation can be powerful. When it doesn’t, automation simply accelerates confusion.
 
 ## Closing Thought
 
@@ -96,11 +95,10 @@ Automation doesn't replace bookkeepers.
 
 It reveals whether the systems they rely on are strong enough to support it.
 
-Design creates clarity.
-Automation multiplies it—or exposes its absence.
+Design creates clarity. Automation multiplies it—or exposes its absence.
 
 ---
 
-If tax season is approaching and your bookkeeping isn't clearly usable, Projexions offers a **Tax Season Bookkeeping Review** — a one-time, paid review to identify what's blocking a CPA from filing and what can wait.
+If tax season is approaching and your bookkeeping isn't clearly usable, Projexions offers a **Tax Season Bookkeeping Readiness** — a one-time, paid review to identify what's blocking a CPA from filing and what can wait.
 
 [Learn more →](/tax-season-bookkeeping-review)
