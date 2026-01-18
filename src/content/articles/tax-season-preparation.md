@@ -85,4 +85,4 @@ They are the ones whose records were already ready to be reviewed.
 
 If tax season is approaching and your bookkeeping isn't clearly usable, Projexions offers a **Tax Season Bookkeeping Readiness** — a one-time, paid review to identify what's blocking a CPA from filing and what can wait.
 
-[Learn more →](/tax-season-bookkeeping-review)
+[Learn more →](/tax-season-bookkeeping-readiness)
