@@ -53,22 +53,21 @@ A CPA is **not required** to prepare or file a tax return.
 
 Tax returns can also be prepared by other qualified professionals, including:
 
-- **Enrolled Agents (EAs)**, who are federally licensed by the IRS  
-- Certified tax preparers and other authorized practitioners  
+- **Enrolled Agents (EAs)**, who are federally licensed by the IRS
+- Certified tax preparers and other authorized practitioners
 
 For many individuals and small businesses, these professionals are entirely appropriate and more cost-effective.
 
-The deciding factor is not the credential.  
-It is the condition of the records being handed over.
+The deciding factor is not the credential. It is the condition of the records being handed over.
 
 ## Where Confusion Usually Arises
 
 Most businesses ask whether they “need a CPA” when:
 
-- tax deadlines are approaching  
-- records feel unclear or unreliable  
-- a prior engagement was frustrating  
-- outside review or scrutiny is imminent  
+- tax deadlines are approaching
+- records feel unclear or unreliable
+- a prior engagement was frustrating
+- outside review or scrutiny is imminent
 
 In many of these situations, the issue is not the absence of a CPA.
 
@@ -80,14 +79,13 @@ When I refer to accounting systems, I’m not talking about software.
 
 I’m referring to structure:
 
-- how income is recorded and reviewed  
-- how expenses are categorized and documented  
-- how accounts are reconciled  
-- how changes are tracked over time  
-- how records are prepared for professional review  
+- how income is recorded and reviewed
+- how expenses are categorized and documented
+- how accounts are reconciled
+- how changes are tracked over time
+- how records are prepared for professional review
 
-Without systems, bookkeeping becomes reactive and fragile.  
-With systems, records become predictable and defensible.
+Without systems, bookkeeping becomes reactive and fragile. With systems, records become predictable and defensible.
 
 Any professional—CPA, EA, or tax preparer—works more effectively when those systems are in place.
 
@@ -111,5 +109,10 @@ This work helps clarify what is actually required before engaging a CPA or other
 
 Understanding what the CPA credential is designed to do—and what it is not—removes much of the confusion around when to involve one.
 
-Credentials matter.  
-But systems determine whether those credentials can be used effectively.
+Credentials matter. But systems determine whether those credentials can be used effectively.
+
+---
+
+If tax season is approaching and your bookkeeping isn't clearly usable, Projexions offers a **Tax Season Bookkeeping Review** — a one-time, paid review to identify what's blocking a CPA from filing and what can wait.
+
+[Learn more →](/tax-season-bookkeeping-review)
