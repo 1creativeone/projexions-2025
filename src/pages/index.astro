@@ -1,18 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
 // Homepage per PRD section 5.1
-
-const articles = await getCollection('articles');
-const latestArticles = articles
-  .sort((a, b) => {
-    // Featured articles first
-    if (a.data.featured && !b.data.featured) return -1;
-    if (!a.data.featured && b.data.featured) return 1;
-    // Then by date
-    return b.data.pubDate.getTime() - a.data.pubDate.getTime();
-  })
-  .slice(0, 3);
 ---
 
 <BaseLayout
@@ -25,88 +13,41 @@ const latestArticles = articles
     <div class="container">
       <div class="hero-content">
         <h1 class="hero-title serif-heading">Financial Clarity When Records Matter</h1>
-        <p class="hero-subtitle">Projexions helps businesses bring order to financial records—particularly when bookkeeping is behind, tax filing is approaching, or clarity is required before moving forward.</p>
-        <p class="hero-body">Projexions focuses on organization, cleanup, and practical decision-support—so records hold up when timing, filings, or outside review make accuracy unavoidable.</p>
+        <p class="hero-subtitle">Projexions helps businesses bring order to bookkeeping records—particularly when things have fallen behind, tax filing is approaching, or a CPA can't proceed without cleanup.</p>
+        <p class="hero-body">Based in West Hollywood, serving small businesses, agencies, and e-commerce sellers who need records fixed—not managed indefinitely.</p>
         <div class="hero-actions">
-          <a href="/tax-season-bookkeeping-readiness" class="btn-primary">Learn more</a>
-          <a href="/services" class="btn-secondary">Our Services</a>
+          <a href="/services" class="btn-primary">View Services</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Tax Season Callout -->
+  <!-- What Projexions Does -->
   <section class="homepage-section">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title-large">Tax Season Exposes Weak Records</h2>
+        <h2 class="section-title-large">What Projexions Does</h2>
         <div class="title-underline"></div>
       </div>
       <div class="section-content-wide">
         <p class="text-xl leading-relaxed mb-6">
-          Tax season is one of the most common points where bookkeeping issues surface—though it is rarely the only one.
+          Bookkeeping problems tend to surface at the worst times: tax deadlines, CPA reviews, financing applications. The records that were "good enough" suddenly aren't.
         </p>
 
-        <p class="text-xl leading-relaxed mb-8 serif-heading" style="font-size: 1.5rem; font-weight: 500;">
-          Tax season rarely creates problems—it reveals them.
-        </p>
-
-        <p class="text-xl leading-relaxed mb-6">
-          Unreconciled accounts, missing documentation, and inconsistent records often accumulate quietly. They become unavoidable when records are needed for filing, financing, or external review.
-        </p>
-
-        <p class="text-xl leading-relaxed mb-8 serif-heading" style="font-size: 1.375rem; font-weight: 500;">
-          At that point, clarity is no longer optional.
-        </p>
-
-        <p class="text-xl leading-relaxed mb-4">
-          Projexions helps businesses understand record condition before pressure escalates—specifically:
+        <p class="text-xl leading-relaxed mb-8">
+          Projexions provides hands-on cleanup and organization—getting books into a usable state so you can move forward.
         </p>
 
         <ul class="homepage-list">
-          <li>What actually requires attention before tax filing</li>
-          <li>What can reasonably be deferred</li>
-          <li>What is blocking a CPA from proceeding</li>
+          <li>Reconciling months or years of backlog</li>
+          <li>Sorting out Stripe, Shopify, and payment processor records</li>
+          <li>Organizing expenses and categorization</li>
+          <li>Preparing records for CPA handoff</li>
         </ul>
 
-        <div class="section-cta" style="margin-top: 2rem;">
-          <div class="hero-actions">
-            <a href="/tax-season-bookkeeping-readiness" class="btn-primary">Learn more</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Latest Articles -->
-  <section class="homepage-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title-large">Latest Articles</h2>
-        <div class="title-underline"></div>
-      </div>
-      <p class="section-intro">Articles covering bookkeeping cleanup, tax-season preparation, and financial organization.</p>
-
-      {latestArticles.length > 0 ? (
-        <div class="blog-cards-grid">
-          {latestArticles.map((article) => (
-            <a href={`/articles/${article.slug}`} class="blog-card-link">
-              <article class="blog-card">
-                <h3 class="blog-card-title">
-                  {article.data.title}
-                </h3>
-                <p class="blog-card-description">{article.data.description}</p>
-                <span class="blog-card-read">Read article →</span>
-              </article>
-            </a>
-          ))}
-        </div>
-      ) : (
-        <p class="text-lg">Content coming soon.</p>
-      )}
-
-      <div class="section-cta">
-        <a href="/articles" style="color: #1B3A2F; text-decoration: none; font-weight: 500; font-size: 1.0625rem; background-color: #F5F5F3; padding: 0.75rem 1.5rem; border-radius: 4px; display: inline-block;">View all articles →</a>
+        <p class="text-xl leading-relaxed mt-8">
+          Scope is determined by what's actually needed, not by a package or retainer.
+        </p>
       </div>
     </div>
   </section>
@@ -115,10 +56,10 @@ const latestArticles = articles
   <section class="homepage-cta">
     <div class="container">
       <div class="cta-content">
-        <h2 class="cta-title">Need to know if your books are CPA-ready?</h2>
-        <p class="cta-subtitle">A structured evaluation can eliminate guesswork before you commit to cleanup.</p>
+        <h2 class="cta-title">Not Sure Where to Start?</h2>
+        <p class="cta-subtitle">If you're uncertain whether your books need cleanup—or how much—start with a conversation.</p>
         <div class="hero-actions">
-          <a href="/tax-season-bookkeeping-readiness" class="btn-cta-inverse">Learn more</a>
+          <a href="/contact" class="btn-cta-inverse">Get in Touch</a>
         </div>
       </div>
     </div>

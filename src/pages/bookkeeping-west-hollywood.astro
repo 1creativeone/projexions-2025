@@ -4,8 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Bookkeeping in West Hollywood — Projexions"
-  description="Projexions provides bookkeeping and financial support to businesses in West Hollywood and surrounding areas."
+  title="Bookkeeping Cleanup — West Hollywood | Projexions"
+  description="Projexions helps West Hollywood businesses get bookkeeping records cleaned up and organized—particularly when a CPA can't proceed, a deadline is approaching, or the current state of the books is unclear."
   currentPath="/bookkeeping-west-hollywood"
 >
   <!-- LocalBusiness Schema Markup for Local SEO -->
@@ -13,7 +13,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Projexions",
-    "description": "Professional bookkeeping and financial support for businesses in West Hollywood",
+    "description": "Professional bookkeeping cleanup and organization for businesses in West Hollywood",
     "url": "https://projexions.com",
     "address": {
       "@type": "PostalAddress",
@@ -30,37 +30,126 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       "@type": "City",
       "name": "West Hollywood"
     },
-    "serviceType": ["Bookkeeping", "Financial Support", "Accounting Services"],
+    "serviceType": ["Bookkeeping Cleanup", "Financial Organization", "Tax Preparation Support"],
     "priceRange": "$$"
   })} />
 
   <div class="page-container">
-    <h1 class="serif-heading text-4xl font-semibold mb-6 text-center">Bookkeeping in West Hollywood</h1>
-    <p class="text-lg leading-relaxed mb-8 text-center">Professional bookkeeping and financial support for businesses in West Hollywood and surrounding areas.</p>
+    <h1 class="serif-heading text-4xl font-semibold mb-4 text-center">Bookkeeping Cleanup — West Hollywood</h1>
 
-    <div class="prose-content mb-12">
-      <p class="text-lg leading-relaxed mb-6">
-        Projexions provides bookkeeping and financial support to businesses in West Hollywood and surrounding areas.
-      </p>
+    <div class="services-card">
+      <div class="prose-content">
+        <h2 class="section-title text-center">Tax Season Exposes What's Been Easy to Ignore</h2>
 
-      <p class="text-lg leading-relaxed mb-6">
-        Services include bookkeeping cleanup, ongoing monthly bookkeeping, reconciliations, and general financial organization.
-        Engagements range from short-term assistance to ongoing support, depending on the needs of the business.
-      </p>
+        <p class="text-lg leading-relaxed mb-6">
+          When records fall behind, it's rarely obvious until something forces the issue. Tax filing is usually that moment.
+        </p>
 
-      <p class="text-lg leading-relaxed mb-6">
-        Whether you need help catching up on overdue records, preparing for tax season, or establishing ongoing monthly
-        bookkeeping processes, we work with each business individually to understand their specific situation and provide
-        tailored support.
-      </p>
+        <p class="text-lg leading-relaxed mb-12">
+          Projexions helps West Hollywood businesses get bookkeeping records cleaned up and organized—particularly when a CPA can't proceed, a deadline is approaching, or the current state of the books is genuinely unclear.
+        </p>
+
+        <hr class="section-divider">
+
+        <h2 class="section-title text-center">What This Looks Like</h2>
+
+        <p class="text-lg leading-relaxed mb-4">Most cleanup engagements involve some combination of:</p>
+
+        <ul class="resource-list text-lg mb-6">
+          <li>Reconciling bank and credit card accounts</li>
+          <li>Sorting out payment processor records (Stripe, Square, PayPal)</li>
+          <li>Cleaning up Shopify and e-commerce platform records</li>
+          <li>Organizing expenses and categorization</li>
+          <li>Clearing the backlog so a CPA can actually file</li>
+        </ul>
+
+        <p class="text-lg leading-relaxed mb-12">
+          Scope depends on how far behind things are and what's actually needed. Some cleanups take days. Others take longer. One recent engagement: a full year reconciled in 12 hours.
+        </p>
+
+        <hr class="section-divider">
+
+        <h2 class="section-title text-center">Who This Is For</h2>
+
+        <p class="text-lg leading-relaxed mb-6">
+          Projexions works with small businesses, solo operators, agencies, and e-commerce sellers—primarily in West Hollywood and the surrounding area.
+        </p>
+
+        <p class="text-lg leading-relaxed mb-12">
+          If your books are behind and you're not sure where to start, that's exactly when this help is most useful.
+        </p>
+
+        <hr class="section-divider">
+
+        <h2 class="section-title text-center">How It Works</h2>
+
+        <p class="text-lg leading-relaxed mb-6">
+          No packages. No tiers. No predetermined scope.
+        </p>
+
+        <p class="text-lg leading-relaxed mb-6">
+          Start with a conversation. Projexions will assess the situation, clarify what's actually needed, and scope the work based on your specific circumstances.
+        </p>
+
+        <p class="text-lg leading-relaxed mb-12">
+          If cleanup isn't the right move, you'll hear that directly.
+        </p>
+
+        <hr class="section-divider">
+
+        <h2 class="section-title text-center">Get in Touch</h2>
+
+        <p class="text-lg leading-relaxed mb-6">
+          If tax season has surfaced a problem you've been avoiding, now is the time to address it.
+        </p>
+
+        <div style="text-align: center; margin-top: 2rem; margin-bottom: 3rem;">
+          <a href="/contact" class="btn-primary">Contact Projexions</a>
+        </div>
+
+        <hr class="section-divider">
+
+        <h2 class="section-title text-center">Scope & Boundaries</h2>
+
+        <p class="text-lg leading-relaxed mb-6">
+          Projexions provides bookkeeping cleanup and organization—not tax advice, tax filing, or CPA services.
+        </p>
+
+        <p class="text-lg leading-relaxed mb-6">
+          Work is scoped individually. No guarantees of outcomes.
+        </p>
+
+        <p class="text-lg leading-relaxed">
+          <a href="/services" style="color: var(--brand-green); text-decoration: none;">View all services</a>
+        </p>
+      </div>
     </div>
-
-    <!-- CTA per PRD -->
-    <section class="cta-section">
-      <h2 class="text-2xl font-semibold mb-4">Get Started</h2>
-      <p class="mb-6 text-lg">Need bookkeeping in West Hollywood?</p>
-      <p class="mb-6">Contact Projexions to discuss your situation.</p>
-      <a href="/contact" class="cta-button">Contact Projexions</a>
-    </section>
   </div>
 </BaseLayout>
+
+<style>
+  .services-card {
+    background: white;
+    border: 1px solid var(--ui-gray);
+    padding: 2.5rem;
+    border-radius: 4px;
+    max-width: 750px;
+    margin: 0 auto 2rem;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--ui-gray);
+    margin: 2.5rem 0;
+  }
+
+  .section-cta {
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .services-card {
+      padding: 1.5rem;
+    }
+  }
+</style>
