@@ -1,517 +1,39 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 // Bookkeeping Catch-Up Cost Estimator - Lead Gen Microsite
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bookkeeping Catch-Up Estimator | Projexions</title>
-  <meta name="description" content="Get a realistic estimate of how many hours and dollars it will take to catch up your bookkeeping before tax season.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg-main: #f8fafc;
-      --bg-card: #ffffff;
-      --text-primary: #1e293b;
-      --text-secondary: #64748b;
-      --text-muted: #94a3b8;
-      --accent: #64748b;
-      --accent-hover: #475569;
-      --border: #e2e8f0;
-      --success: #059669;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg-main);
-      color: var(--text-primary);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    .container {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
-
-    /* Hero */
-    .hero {
-      text-align: center;
-      padding: 3rem 0 2rem;
-    }
-
-    .hero h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
-    .hero h2 {
-      font-size: 1.125rem;
-      font-weight: 400;
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-    }
-
-    .hero p {
-      font-size: 0.9375rem;
-      color: var(--text-muted);
-    }
-
-    /* Reassurance box */
-    .reassurance {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.25rem 1.5rem;
-      margin: 2rem 0;
-      text-align: center;
-    }
-
-    .reassurance p {
-      color: var(--text-secondary);
-      font-size: 0.9375rem;
-    }
-
-    /* Quiz Section */
-    .quiz-section {
-      display: none;
-    }
-
-    .quiz-section.active {
-      display: block;
-    }
-
-    .progress-container {
-      margin-bottom: 2rem;
-    }
-
-    .progress-text {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-      text-align: center;
-    }
-
-    .progress-bar {
-      height: 4px;
-      background: var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-
-    .question-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-    }
-
-    .question-text {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .option-btn {
-      width: 100%;
-      padding: 1rem 1.25rem;
-      background: var(--bg-card);
-      border: 2px solid var(--border);
-      border-radius: 8px;
-      font-size: 1rem;
-      color: var(--text-primary);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-align: left;
-    }
-
-    .option-btn:hover {
-      border-color: var(--accent);
-      background: var(--bg-main);
-    }
-
-    .option-btn.selected {
-      border-color: var(--accent);
-      background: var(--bg-main);
-    }
-
-    /* Loading */
-    .loading-section {
-      display: none;
-      text-align: center;
-      padding: 4rem 2rem;
-    }
-
-    .loading-section.active {
-      display: block;
-    }
-
-    .spinner {
-      width: 48px;
-      height: 48px;
-      border: 3px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 1.5rem;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .loading-section p {
-      color: var(--text-secondary);
-      font-size: 1.125rem;
-    }
-
-    /* Results */
-    .results-section {
-      display: none;
-    }
-
-    .results-section.active {
-      display: block;
-    }
-
-    .results-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2.5rem 2rem;
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .results-label {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
-    }
-
-    .results-hours {
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-
-    .results-tier {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      background: var(--bg-main);
-      border-radius: 4px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-    }
-
-    .results-cost {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 0.25rem;
-    }
-
-    .results-cost-note {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-    }
-
-    .drivers-section {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .drivers-title {
-      font-size: 0.9375rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-
-    .drivers-list {
-      list-style: none;
-    }
-
-    .drivers-list li {
-      padding: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-      color: var(--text-secondary);
-      font-size: 0.9375rem;
-    }
-
-    .drivers-list li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-
-    .emotional-block {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .emotional-block p {
-      color: var(--text-secondary);
-      font-size: 0.9375rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .emotional-block p:last-child {
-      margin-bottom: 0;
-    }
-
-    .emotional-block strong {
-      color: var(--text-primary);
-    }
-
-    /* CTA Section */
-    .cta-section {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .cta-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-      text-align: center;
-    }
-
-    .cta-subtitle {
-      font-size: 0.9375rem;
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .email-form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .email-input {
-      width: 100%;
-      padding: 0.875rem 1rem;
-      border: 2px solid var(--border);
-      border-radius: 8px;
-      font-size: 1rem;
-      font-family: inherit;
-    }
-
-    .email-input:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 1rem;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .submit-btn:hover {
-      background: var(--accent-hover);
-    }
-
-    .form-note {
-      font-size: 0.8125rem;
-      color: var(--text-muted);
-      text-align: center;
-    }
-
-    /* Gumroad Upsell */
-    .upsell-section {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .upsell-section p {
-      color: var(--text-secondary);
-      font-size: 0.9375rem;
-      margin-bottom: 1rem;
-    }
-
-    .gumroad-btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background: var(--text-primary);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 0.9375rem;
-      font-weight: 500;
-      transition: opacity 0.2s ease;
-    }
-
-    .gumroad-btn:hover {
-      opacity: 0.9;
-    }
-
-    /* Thank You */
-    .thankyou-section {
-      display: none;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .thankyou-section.active {
-      display: block;
-    }
-
-    .thankyou-section h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-
-    .thankyou-section p {
-      color: var(--text-secondary);
-    }
-
-    /* Disclaimer */
-    .disclaimer {
-      text-align: center;
-      padding: 2rem 0;
-      border-top: 1px solid var(--border);
-      margin-top: 2rem;
-    }
-
-    .disclaimer p {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    /* Start Button */
-    .start-btn {
-      display: block;
-      width: 100%;
-      max-width: 320px;
-      margin: 2rem auto;
-      padding: 1rem 2rem;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.125rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .start-btn:hover {
-      background: var(--accent-hover);
-    }
-
-    /* Restart */
-    .restart-btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text-muted);
-      font-size: 0.875rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .restart-btn:hover {
-      border-color: var(--accent);
-      color: var(--text-secondary);
-    }
-
-    /* Responsive */
-    @media (max-width: 640px) {
-      .container {
-        padding: 1.5rem 1rem;
-      }
-
-      .hero h1 {
-        font-size: 1.75rem;
-      }
-
-      .results-hours {
-        font-size: 2.75rem;
-      }
-
-      .question-card {
-        padding: 1.5rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
+<BaseLayout
+  title="Bookkeeping Catch-Up Estimator — Projexions"
+  description="Get a realistic estimate of how many hours and dollars it will take to catch up your bookkeeping before tax season."
+  currentPath="/estimator"
+>
+  <div class="page-container">
     <!-- Hero Section -->
-    <section id="hero-section" class="hero">
-      <h1>How Far Behind Is Your Bookkeeping — Really?</h1>
-      <h2>In just 2 minutes, get a realistic estimate of how many hours (and dollars) it will take to catch up before tax season.</h2>
-      <p>What you're feeling is normal. Most new businesses fall behind — especially in the first year.</p>
+    <section id="hero-section" class="estimator-hero">
+      <h1 class="serif-heading text-4xl font-semibold mb-4 text-center">How Far Behind Is Your Bookkeeping — Really?</h1>
+      <p class="text-xl leading-relaxed mb-6 text-center page-subtitle">
+        In just 2 minutes, get a realistic estimate of how many hours (and dollars) it will take to catch up before tax season.
+      </p>
+      <p class="text-lg text-center" style="color: var(--text-gray);">
+        What you're feeling is normal. Most new businesses fall behind — especially in the first year.
+      </p>
     </section>
 
     <!-- Reassurance -->
-    <section id="reassurance-section" class="reassurance">
-      <p>This isn't a test and there's no "failing."<br>The goal is clarity so you can make a good decision about what to do next.</p>
+    <section id="reassurance-section" class="estimator-card" style="margin-top: 2rem;">
+      <p class="text-lg text-center">
+        This isn't a test and there's no "failing."<br>
+        The goal is clarity so you can make a good decision about what to do next.
+      </p>
     </section>
 
     <!-- Start Button -->
-    <button id="start-btn" class="start-btn">Start the Estimator</button>
+    <div id="start-container" style="text-align: center; margin: 2rem 0;">
+      <button id="start-btn" class="btn-primary" style="padding: 1rem 2.5rem; font-size: 1.125rem;">
+        Start the Estimator
+      </button>
+    </div>
 
     <!-- Quiz Section -->
     <section id="quiz-section" class="quiz-section">
@@ -522,8 +44,8 @@
         </div>
       </div>
 
-      <div class="question-card">
-        <p id="question-text" class="question-text"></p>
+      <div class="estimator-card">
+        <p id="question-text" class="section-title text-center" style="margin-bottom: 1.5rem;"></p>
         <div id="options" class="options"></div>
       </div>
     </section>
@@ -531,400 +53,627 @@
     <!-- Loading Section -->
     <section id="loading-section" class="loading-section">
       <div class="spinner"></div>
-      <p>Calculating your estimate...</p>
+      <p class="text-lg">Calculating your estimate...</p>
     </section>
 
     <!-- Results Section -->
     <section id="results-section" class="results-section">
-      <div class="results-card">
+      <div class="estimator-card results-card">
         <p class="results-label">Estimated Catch-Up Effort</p>
         <p id="results-hours" class="results-hours">14–24</p>
-        <p class="results-label" style="margin-top: 0.25rem;">hours</p>
-        <span id="results-tier" class="results-tier">Moderate</span>
+        <p class="results-label">hours</p>
+        <span id="results-tier" class="results-tier">Moderate Complexity</span>
         <p id="results-cost" class="results-cost">$1,050 – $2,400</p>
         <p class="results-cost-note">Based on typical professional rates</p>
       </div>
 
-      <div id="drivers-section" class="drivers-section">
-        <p class="drivers-title">What's driving this estimate:</p>
-        <ul id="drivers-list" class="drivers-list"></ul>
+      <div id="drivers-section" class="estimator-card" style="margin-top: 1.5rem;">
+        <p class="text-lg font-semibold mb-4">What's driving this estimate:</p>
+        <ul id="drivers-list" class="resource-list text-lg"></ul>
       </div>
 
-      <div class="emotional-block">
-        <p><strong>Take a breath.</strong></p>
-        <p>This doesn't mean you've done anything wrong. It usually just means you didn't have a system yet — which is extremely common for new businesses.</p>
-        <p>The important thing is that this <em>can</em> be fixed, and you don't have to figure out the next step alone.</p>
+      <div class="estimator-card" style="margin-top: 1.5rem;">
+        <p class="text-lg mb-4"><strong>Take a breath.</strong></p>
+        <p class="text-lg mb-4">
+          This doesn't mean you've done anything wrong. It usually just means you didn't have a system yet — which is extremely common for new businesses.
+        </p>
+        <p class="text-lg">
+          The important thing is that this <em>can</em> be fixed, and you don't have to figure out the next step alone.
+        </p>
       </div>
 
       <!-- Email CTA -->
-      <div id="cta-section" class="cta-section">
-        <p class="cta-title">Get the Free Bookkeeping Organizer</p>
-        <p class="cta-subtitle">A simple spreadsheet + PDF checklist to help you get started.</p>
+      <div id="cta-section" class="estimator-card" style="margin-top: 1.5rem;">
+        <h2 class="section-title text-center">Get the Free Bookkeeping Organizer</h2>
+        <p class="text-lg text-center mb-6">A simple spreadsheet + PDF checklist to help you get started.</p>
 
-        <form id="email-form" class="email-form" name="estimator-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <form id="email-form" name="estimator-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="estimator-leads">
           <input type="hidden" name="bot-field">
           <input type="hidden" id="score-field" name="score" value="">
           <input type="hidden" id="tier-field" name="tier" value="">
           <input type="hidden" id="hours-field" name="hours" value="">
           <input type="hidden" id="drivers-field" name="drivers" value="">
-          <input type="email" name="email" class="email-input" placeholder="Enter your email" required>
-          <button type="submit" class="submit-btn">Send Me the Free Organizer</button>
+          <div style="max-width: 400px; margin: 0 auto;">
+            <input type="email" name="email" class="email-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0.75rem;">
+              Send Me the Free Organizer
+            </button>
+          </div>
         </form>
-        <p class="form-note">No spam. Unsubscribe anytime.</p>
+        <p class="text-sm text-center mt-4" style="color: var(--text-gray);">No spam. Unsubscribe anytime.</p>
       </div>
 
-      <!-- Thank You (shown after form submit) -->
+      <!-- Thank You -->
       <div id="thankyou-section" class="thankyou-section">
-        <h3>Check your email!</h3>
-        <p>Your free organizer is on the way.</p>
+        <div class="estimator-card">
+          <h3 class="section-title text-center">Check your email!</h3>
+          <p class="text-lg text-center">Your free organizer is on the way.</p>
+        </div>
       </div>
 
-      <!-- Gumroad Upsell -->
-      <div class="upsell-section">
-        <p>Want the full toolkit? Get the complete Notion template + advanced spreadsheet.</p>
-        <a href="https://projexions.lemonsqueezy.com/buy/bookkeeping-toolkit" target="_blank" rel="noopener" class="gumroad-btn">
+      <!-- Lemon Squeezy Upsell -->
+      <div class="estimator-card" style="margin-top: 1.5rem; text-align: center;">
+        <p class="text-lg mb-4">Want the full toolkit? Get the complete Notion template + advanced spreadsheet.</p>
+        <a href="https://projexions.lemonsqueezy.com/buy/bookkeeping-toolkit" class="btn-primary lemonsqueezy-button">
           Unlock Full Toolkit — $47
         </a>
       </div>
 
-      <div style="text-align: center;">
+      <div style="text-align: center; margin-top: 1.5rem;">
         <button id="restart-btn" class="restart-btn">Start Over</button>
       </div>
     </section>
 
     <!-- Disclaimer -->
-    <footer class="disclaimer">
-      <p>This tool provides a high-level estimate for educational purposes only.<br>It does not provide tax, accounting, or bookkeeping services.</p>
-    </footer>
+    <div class="estimator-disclaimer">
+      <p>This tool provides a high-level estimate for educational purposes only. It does not provide tax, accounting, or bookkeeping services.</p>
+    </div>
   </div>
+</BaseLayout>
 
-  <script>
-    // Quiz Questions
-    const questions = [
-      {
-        id: 'operatingMonths',
-        text: 'How long has your business been operating?',
-        options: ['0–6 months', '6–12 months', '12–24 months', '2+ years']
-      },
-      {
-        id: 'lastUpdated',
-        text: 'When were your books last updated?',
-        options: ['This month', '1–3 months ago', '3–6 months ago', '6+ months ago', 'Never / not sure']
-      },
-      {
-        id: 'bankAccounts',
-        text: 'How many bank accounts does the business use?',
-        options: ['1', '2–3', '4+']
-      },
-      {
-        id: 'cards',
-        text: 'How many credit cards are used for business expenses?',
-        options: ['None', '1', '2–3', '4+']
-      },
-      {
-        id: 'txnTier',
-        text: 'Approximately how many transactions per month (combined)?',
-        options: ['Under 50', '50–150', '150–300', '300+']
-      },
-      {
-        id: 'mixedPersonal',
-        text: 'Have you ever used a business account or card for personal expenses?',
-        options: ['No', 'Occasionally', 'Frequently / not sure']
-      },
-      {
-        id: 'payroll',
-        text: 'Do you run payroll?',
-        options: ['No', 'Yes (up to date)', 'Yes (behind)']
-      },
-      {
-        id: 'contractors',
-        text: 'Do you pay contractors (1099s)?',
-        options: ['No', 'Yes']
-      },
-      {
-        id: 'platforms',
-        text: 'Do you sell through platforms (Stripe, Shopify, PayPal, etc.)?',
-        options: ['No', 'Yes (one platform)', 'Yes (multiple platforms)']
-      },
-      {
-        id: 'reconciled',
-        text: 'Have any accounts been reconciled?',
-        options: ['Yes, all', 'Some', 'None / not sure']
-      }
-    ];
+<style>
+  .estimator-hero {
+    padding: 2rem 0;
+  }
 
-    // State
-    let currentQuestion = 0;
-    let answers = {};
+  .estimator-card {
+    background: white;
+    border: 1px solid var(--ui-gray);
+    padding: 2rem;
+    border-radius: 4px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
 
-    // Load state from localStorage
-    function loadState() {
-      const saved = localStorage.getItem('estimator_state');
-      if (saved) {
-        const state = JSON.parse(saved);
-        currentQuestion = state.currentQuestion || 0;
-        answers = state.answers || {};
-      }
+  /* Quiz */
+  .quiz-section {
+    display: none;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .quiz-section.active {
+    display: block;
+  }
+
+  .progress-container {
+    margin-bottom: 1.5rem;
+  }
+
+  .progress-text {
+    font-size: 0.875rem;
+    color: var(--text-gray);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: var(--ui-gray);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--brand-green);
+    transition: width 0.3s ease;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .option-btn {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: white;
+    border: 2px solid var(--ui-gray);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--brand-green);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+  }
+
+  .option-btn:hover {
+    border-color: var(--brand-green);
+    background: var(--bg-cream);
+  }
+
+  .option-btn.selected {
+    border-color: var(--brand-green);
+    background: var(--bg-cream);
+  }
+
+  /* Loading */
+  .loading-section {
+    display: none;
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .loading-section.active {
+    display: block;
+  }
+
+  .spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--ui-gray);
+    border-top-color: var(--brand-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1.5rem;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Results */
+  .results-section {
+    display: none;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .results-section.active {
+    display: block;
+  }
+
+  .results-card {
+    text-align: center;
+  }
+
+  .results-label {
+    font-size: 0.875rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+
+  .results-hours {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--brand-green);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .results-tier {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--bg-cream);
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--brand-green);
+    margin: 1rem 0;
+  }
+
+  .results-cost {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--brand-green);
+    margin-bottom: 0.25rem;
+  }
+
+  .results-cost-note {
+    font-size: 0.875rem;
+    color: var(--text-gray);
+  }
+
+  /* Email form */
+  .email-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--ui-gray);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+
+  .email-input:focus {
+    outline: none;
+    border-color: var(--brand-green);
+  }
+
+  /* Thank you */
+  .thankyou-section {
+    display: none;
+    margin-top: 1.5rem;
+  }
+
+  .thankyou-section.active {
+    display: block;
+  }
+
+  /* Restart */
+  .restart-btn {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--ui-gray);
+    border-radius: 4px;
+    color: var(--text-gray);
+    font-size: 0.875rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .restart-btn:hover {
+    border-color: var(--brand-green);
+    color: var(--brand-green);
+  }
+
+  /* Disclaimer */
+  .estimator-disclaimer {
+    max-width: 640px;
+    margin: 2rem auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ui-gray);
+    text-align: center;
+  }
+
+  .estimator-disclaimer p {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+  }
+
+  @media (max-width: 640px) {
+    .estimator-card {
+      padding: 1.5rem;
     }
 
-    // Save state to localStorage
-    function saveState() {
-      localStorage.setItem('estimator_state', JSON.stringify({
-        currentQuestion,
-        answers
-      }));
+    .results-hours {
+      font-size: 2.75rem;
+    }
+  }
+</style>
+
+<script>
+  // Quiz Questions
+  const questions = [
+    {
+      id: 'operatingMonths',
+      text: 'How long has your business been operating?',
+      options: ['0–6 months', '6–12 months', '12–24 months', '2+ years']
+    },
+    {
+      id: 'lastUpdated',
+      text: 'When were your books last updated?',
+      options: ['This month', '1–3 months ago', '3–6 months ago', '6+ months ago', 'Never / not sure']
+    },
+    {
+      id: 'bankAccounts',
+      text: 'How many bank accounts does the business use?',
+      options: ['1', '2–3', '4+']
+    },
+    {
+      id: 'cards',
+      text: 'How many credit cards are used for business expenses?',
+      options: ['None', '1', '2–3', '4+']
+    },
+    {
+      id: 'txnTier',
+      text: 'Approximately how many transactions per month (combined)?',
+      options: ['Under 50', '50–150', '150–300', '300+']
+    },
+    {
+      id: 'mixedPersonal',
+      text: 'Have you ever used a business account or card for personal expenses?',
+      options: ['No', 'Occasionally', 'Frequently / not sure']
+    },
+    {
+      id: 'payroll',
+      text: 'Do you run payroll?',
+      options: ['No', 'Yes (up to date)', 'Yes (behind)']
+    },
+    {
+      id: 'contractors',
+      text: 'Do you pay contractors (1099s)?',
+      options: ['No', 'Yes']
+    },
+    {
+      id: 'platforms',
+      text: 'Do you sell through platforms (Stripe, Shopify, PayPal, etc.)?',
+      options: ['No', 'Yes (one platform)', 'Yes (multiple platforms)']
+    },
+    {
+      id: 'reconciled',
+      text: 'Have any accounts been reconciled?',
+      options: ['Yes, all', 'Some', 'None / not sure']
+    }
+  ];
+
+  // State
+  let currentQuestion = 0;
+  let answers = {};
+
+  // Load state from localStorage
+  function loadState() {
+    const saved = localStorage.getItem('estimator_state');
+    if (saved) {
+      const state = JSON.parse(saved);
+      currentQuestion = state.currentQuestion || 0;
+      answers = state.answers || {};
+    }
+  }
+
+  // Save state to localStorage
+  function saveState() {
+    localStorage.setItem('estimator_state', JSON.stringify({
+      currentQuestion,
+      answers
+    }));
+  }
+
+  // Clear state
+  function clearState() {
+    localStorage.removeItem('estimator_state');
+    currentQuestion = 0;
+    answers = {};
+  }
+
+  // Scoring function
+  function calcScore(inputs) {
+    let s = 0;
+
+    const lastUpdatedScores = [0, 5, 15, 25, 30];
+    s += lastUpdatedScores[inputs.lastUpdated] || 0;
+
+    const reconciledScores = [0, 10, 20];
+    s += reconciledScores[inputs.reconciled] || 0;
+
+    const bankScores = [0, 8, 18];
+    s += bankScores[inputs.bankAccounts] || 0;
+
+    const cardScores = [0, 3, 8, 15];
+    s += cardScores[inputs.cards] || 0;
+
+    const txnScores = [0, 10, 20, 35];
+    s += txnScores[inputs.txnTier] || 0;
+
+    if (inputs.mixedPersonal === 1) s += 10;
+    if (inputs.mixedPersonal === 2) s += 20;
+
+    if (inputs.payroll === 2) s += 15;
+
+    if (inputs.contractors === 1) s += 5;
+
+    if (inputs.platforms === 1) s += 5;
+    if (inputs.platforms === 2) s += 12;
+
+    s = Math.min(s, 100);
+
+    let tier, hours;
+    if (s <= 24) {
+      tier = 'Low';
+      hours = '4–8';
+    } else if (s <= 49) {
+      tier = 'Moderate';
+      hours = '8–14';
+    } else if (s <= 74) {
+      tier = 'High';
+      hours = '14–24';
+    } else {
+      tier = 'Complex';
+      hours = '24–40';
     }
 
-    // Clear state
-    function clearState() {
-      localStorage.removeItem('estimator_state');
-      currentQuestion = 0;
-      answers = {};
+    const hourLow = parseInt(hours.split('–')[0]);
+    const hourHigh = parseInt(hours.split('–')[1]);
+    const costLow = hourLow * 75;
+    const costHigh = hourHigh * 100;
+
+    const drivers = getDrivers(inputs);
+
+    return { score: s, tier, hours, costLow, costHigh, drivers };
+  }
+
+  function getDrivers(inputs) {
+    const drivers = [];
+
+    if (inputs.reconciled === 2) {
+      drivers.push("Accounts have not been reconciled");
     }
 
-    // Scoring function
-    function calcScore(inputs) {
-      let s = 0;
-
-      // Time factors
-      const lastUpdatedScores = [0, 5, 15, 25, 30];
-      s += lastUpdatedScores[inputs.lastUpdated] || 0;
-
-      const reconciledScores = [0, 10, 20];
-      s += reconciledScores[inputs.reconciled] || 0;
-
-      // Volume factors
-      const bankScores = [0, 8, 18];
-      s += bankScores[inputs.bankAccounts] || 0;
-
-      const cardScores = [0, 3, 8, 15];
-      s += cardScores[inputs.cards] || 0;
-
-      const txnScores = [0, 10, 20, 35];
-      s += txnScores[inputs.txnTier] || 0;
-
-      // Complexity flags
-      if (inputs.mixedPersonal === 1) s += 10;
-      if (inputs.mixedPersonal === 2) s += 20;
-
-      if (inputs.payroll === 2) s += 15;
-
-      if (inputs.contractors === 1) s += 5;
-
-      if (inputs.platforms === 1) s += 5;
-      if (inputs.platforms === 2) s += 12;
-
-      s = Math.min(s, 100);
-
-      // Determine tier and hours
-      let tier, hours;
-      if (s <= 24) {
-        tier = 'Low';
-        hours = '4–8';
-      } else if (s <= 49) {
-        tier = 'Moderate';
-        hours = '8–14';
-      } else if (s <= 74) {
-        tier = 'High';
-        hours = '14–24';
-      } else {
-        tier = 'Complex';
-        hours = '24–40';
-      }
-
-      // Calculate cost
-      const hourLow = parseInt(hours.split('–')[0]);
-      const hourHigh = parseInt(hours.split('–')[1]);
-      const costLow = hourLow * 75;
-      const costHigh = hourHigh * 100;
-
-      // Get drivers
-      const drivers = getDrivers(inputs);
-
-      return { score: s, tier, hours, costLow, costHigh, drivers };
+    if (inputs.txnTier >= 2) {
+      drivers.push("High transaction volume requires more categorization");
     }
 
-    function getDrivers(inputs) {
-      const drivers = [];
-
-      if (inputs.reconciled === 2) {
-        drivers.push("Accounts have not been reconciled");
-      }
-
-      if (inputs.txnTier >= 2) {
-        drivers.push("High transaction volume requires more categorization");
-      }
-
-      if (inputs.platforms === 2) {
-        drivers.push("Multiple payment platforms need integration");
-      }
-
-      if (inputs.mixedPersonal >= 1) {
-        drivers.push("Personal and business expenses need separation");
-      }
-
-      if (inputs.lastUpdated >= 2) {
-        drivers.push("Significant time gap since books were updated");
-      }
-
-      if (inputs.payroll === 2) {
-        drivers.push("Payroll records need to be brought current");
-      }
-
-      if (inputs.bankAccounts >= 2) {
-        drivers.push("Multiple bank accounts increase reconciliation work");
-      }
-
-      if (inputs.cards >= 2) {
-        drivers.push("Multiple credit cards add categorization complexity");
-      }
-
-      return drivers.slice(0, 3);
+    if (inputs.platforms === 2) {
+      drivers.push("Multiple payment platforms need integration");
     }
 
-    // DOM Elements
-    const startBtn = document.getElementById('start-btn');
-    const heroSection = document.getElementById('hero-section');
-    const reassuranceSection = document.getElementById('reassurance-section');
-    const quizSection = document.getElementById('quiz-section');
-    const loadingSection = document.getElementById('loading-section');
-    const resultsSection = document.getElementById('results-section');
-    const questionText = document.getElementById('question-text');
-    const optionsContainer = document.getElementById('options');
-    const currentQSpan = document.getElementById('current-q');
-    const progressFill = document.getElementById('progress-fill');
-    const restartBtn = document.getElementById('restart-btn');
-    const emailForm = document.getElementById('email-form');
-    const ctaSection = document.getElementById('cta-section');
-    const thankyouSection = document.getElementById('thankyou-section');
-
-    // Start quiz
-    function startQuiz() {
-      heroSection.style.display = 'none';
-      reassuranceSection.style.display = 'none';
-      startBtn.style.display = 'none';
-      quizSection.classList.add('active');
-      renderQuestion();
+    if (inputs.mixedPersonal >= 1) {
+      drivers.push("Personal and business expenses need separation");
     }
 
-    // Render current question
-    function renderQuestion() {
-      const q = questions[currentQuestion];
-      questionText.textContent = q.text;
-      currentQSpan.textContent = currentQuestion + 1;
-      progressFill.style.width = ((currentQuestion + 1) / questions.length * 100) + '%';
-
-      optionsContainer.innerHTML = '';
-      q.options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.textContent = opt;
-        if (answers[q.id] === idx) {
-          btn.classList.add('selected');
-        }
-        btn.addEventListener('click', () => selectOption(q.id, idx));
-        optionsContainer.appendChild(btn);
-      });
+    if (inputs.lastUpdated >= 2) {
+      drivers.push("Significant time gap since books were updated");
     }
 
-    // Select option
-    function selectOption(questionId, optionIndex) {
-      answers[questionId] = optionIndex;
-      saveState();
-
-      // Brief delay for visual feedback
-      setTimeout(() => {
-        if (currentQuestion < questions.length - 1) {
-          currentQuestion++;
-          saveState();
-          renderQuestion();
-        } else {
-          showLoading();
-        }
-      }, 200);
+    if (inputs.payroll === 2) {
+      drivers.push("Payroll records need to be brought current");
     }
 
-    // Show loading
-    function showLoading() {
-      quizSection.classList.remove('active');
-      loadingSection.classList.add('active');
-
-      setTimeout(() => {
-        showResults();
-      }, 2000);
+    if (inputs.bankAccounts >= 2) {
+      drivers.push("Multiple bank accounts increase reconciliation work");
     }
 
-    // Show results
-    function showResults() {
-      loadingSection.classList.remove('active');
-      resultsSection.classList.add('active');
+    if (inputs.cards >= 2) {
+      drivers.push("Multiple credit cards add categorization complexity");
+    }
 
-      const result = calcScore(answers);
+    return drivers.slice(0, 3);
+  }
 
-      document.getElementById('results-hours').textContent = result.hours;
-      document.getElementById('results-tier').textContent = result.tier + ' Complexity';
-      document.getElementById('results-cost').textContent =
-        '$' + result.costLow.toLocaleString() + ' – $' + result.costHigh.toLocaleString();
+  // DOM Elements
+  const startBtn = document.getElementById('start-btn');
+  const startContainer = document.getElementById('start-container');
+  const heroSection = document.getElementById('hero-section');
+  const reassuranceSection = document.getElementById('reassurance-section');
+  const quizSection = document.getElementById('quiz-section');
+  const loadingSection = document.getElementById('loading-section');
+  const resultsSection = document.getElementById('results-section');
+  const questionText = document.getElementById('question-text');
+  const optionsContainer = document.getElementById('options');
+  const currentQSpan = document.getElementById('current-q');
+  const progressFill = document.getElementById('progress-fill');
+  const restartBtn = document.getElementById('restart-btn');
+  const emailForm = document.getElementById('email-form');
+  const ctaSection = document.getElementById('cta-section');
+  const thankyouSection = document.getElementById('thankyou-section');
 
-      // Populate drivers
-      const driversList = document.getElementById('drivers-list');
-      driversList.innerHTML = '';
+  // Start quiz
+  function startQuiz() {
+    heroSection.style.display = 'none';
+    reassuranceSection.style.display = 'none';
+    startContainer.style.display = 'none';
+    quizSection.classList.add('active');
+    renderQuestion();
+  }
 
-      if (result.drivers.length > 0) {
-        result.drivers.forEach(driver => {
-          const li = document.createElement('li');
-          li.textContent = driver;
-          driversList.appendChild(li);
-        });
-        document.getElementById('drivers-section').style.display = 'block';
-      } else {
-        document.getElementById('drivers-section').style.display = 'none';
+  // Render current question
+  function renderQuestion() {
+    const q = questions[currentQuestion];
+    questionText.textContent = q.text;
+    currentQSpan.textContent = currentQuestion + 1;
+    progressFill.style.width = ((currentQuestion + 1) / questions.length * 100) + '%';
+
+    optionsContainer.innerHTML = '';
+    q.options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.textContent = opt;
+      if (answers[q.id] === idx) {
+        btn.classList.add('selected');
       }
-
-      // Set hidden form fields
-      document.getElementById('score-field').value = result.score;
-      document.getElementById('tier-field').value = result.tier;
-      document.getElementById('hours-field').value = result.hours;
-      document.getElementById('drivers-field').value = result.drivers.join('; ');
-
-      clearState();
-    }
-
-    // Restart
-    function restart() {
-      clearState();
-      resultsSection.classList.remove('active');
-      heroSection.style.display = 'block';
-      reassuranceSection.style.display = 'block';
-      startBtn.style.display = 'block';
-      ctaSection.style.display = 'block';
-      thankyouSection.classList.remove('active');
-    }
-
-    // Form submission
-    emailForm.addEventListener('submit', function(e) {
-      // Let Netlify handle it, but show thank you
-      setTimeout(() => {
-        ctaSection.style.display = 'none';
-        thankyouSection.classList.add('active');
-      }, 100);
+      btn.addEventListener('click', () => selectOption(q.id, idx));
+      optionsContainer.appendChild(btn);
     });
+  }
 
-    // Event listeners
-    startBtn.addEventListener('click', startQuiz);
-    restartBtn.addEventListener('click', restart);
+  // Select option
+  function selectOption(questionId, optionIndex) {
+    answers[questionId] = optionIndex;
+    saveState();
 
-    // Check for saved state on load
-    loadState();
-    if (currentQuestion > 0 && currentQuestion < questions.length) {
-      // Resume quiz
-      heroSection.style.display = 'none';
-      reassuranceSection.style.display = 'none';
-      startBtn.style.display = 'none';
-      quizSection.classList.add('active');
-      renderQuestion();
+    setTimeout(() => {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        saveState();
+        renderQuestion();
+      } else {
+        showLoading();
+      }
+    }, 200);
+  }
+
+  // Show loading
+  function showLoading() {
+    quizSection.classList.remove('active');
+    loadingSection.classList.add('active');
+
+    setTimeout(() => {
+      showResults();
+    }, 2000);
+  }
+
+  // Show results
+  function showResults() {
+    loadingSection.classList.remove('active');
+    resultsSection.classList.add('active');
+
+    const result = calcScore(answers);
+
+    document.getElementById('results-hours').textContent = result.hours;
+    document.getElementById('results-tier').textContent = result.tier + ' Complexity';
+    document.getElementById('results-cost').textContent =
+      '$' + result.costLow.toLocaleString() + ' – $' + result.costHigh.toLocaleString();
+
+    const driversList = document.getElementById('drivers-list');
+    driversList.innerHTML = '';
+
+    if (result.drivers.length > 0) {
+      result.drivers.forEach(driver => {
+        const li = document.createElement('li');
+        li.textContent = driver;
+        driversList.appendChild(li);
+      });
+      document.getElementById('drivers-section').style.display = 'block';
+    } else {
+      document.getElementById('drivers-section').style.display = 'none';
     }
-  </script>
-</body>
-</html>
+
+    document.getElementById('score-field').value = result.score;
+    document.getElementById('tier-field').value = result.tier;
+    document.getElementById('hours-field').value = result.hours;
+    document.getElementById('drivers-field').value = result.drivers.join('; ');
+
+    clearState();
+  }
+
+  // Restart
+  function restart() {
+    clearState();
+    resultsSection.classList.remove('active');
+    heroSection.style.display = 'block';
+    reassuranceSection.style.display = 'block';
+    startContainer.style.display = 'block';
+    ctaSection.style.display = 'block';
+    thankyouSection.classList.remove('active');
+  }
+
+  // Form submission
+  emailForm.addEventListener('submit', function(e) {
+    setTimeout(() => {
+      ctaSection.style.display = 'none';
+      thankyouSection.classList.add('active');
+    }, 100);
+  });
+
+  // Event listeners
+  startBtn.addEventListener('click', startQuiz);
+  restartBtn.addEventListener('click', restart);
+
+  // Check for saved state on load
+  loadState();
+  if (currentQuestion > 0 && currentQuestion < questions.length) {
+    heroSection.style.display = 'none';
+    reassuranceSection.style.display = 'none';
+    startContainer.style.display = 'none';
+    quizSection.classList.add('active');
+    renderQuestion();
+  }
+</script>
