@@ -13,6 +13,7 @@ export const GET: APIRoute = async ({ site }) => {
     '/about',
     '/contact',
     '/bookkeeping-west-hollywood',
+    '/bookkeeping-cleanup',
     '/tax-season-bookkeeping-readiness',
     '/estimator',
     '/sitemap',

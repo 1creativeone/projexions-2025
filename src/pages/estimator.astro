@@ -67,12 +67,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p class="results-cost-note">Based on typical professional rates</p>
       </div>
 
-      <div id="drivers-section" class="estimator-card" style="margin-top: 1.5rem;">
+      <div id="drivers-section" class="estimator-card" style="margin-top: 1.5rem; text-align: center;">
         <p class="text-lg font-semibold mb-4">What's driving this estimate:</p>
-        <ul id="drivers-list" class="resource-list text-lg"></ul>
+        <ul id="drivers-list" class="resource-list text-lg" style="display: inline-block; text-align: left;"></ul>
       </div>
 
-      <div class="estimator-card" style="margin-top: 1.5rem;">
+      <div class="estimator-card" style="margin-top: 1.5rem; text-align: center;">
         <p class="text-lg mb-4"><strong>Take a breath.</strong></p>
         <p class="text-lg mb-4">
           This doesn't mean you've done anything wrong. It usually just means you didn't have a system yet — which is extremely common for new businesses.
@@ -82,42 +82,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </p>
       </div>
 
-      <!-- Email CTA -->
-      <div id="cta-section" class="estimator-card" style="margin-top: 1.5rem;">
-        <h2 class="section-title text-center">Get the Free Bookkeeping Organizer</h2>
-        <p class="text-lg text-center mb-6">A simple spreadsheet + PDF checklist to help you get started.</p>
-
-        <form id="email-form" name="estimator-leads" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="estimator-leads">
-          <input type="hidden" name="bot-field">
-          <input type="hidden" id="score-field" name="score" value="">
-          <input type="hidden" id="tier-field" name="tier" value="">
-          <input type="hidden" id="hours-field" name="hours" value="">
-          <input type="hidden" id="drivers-field" name="drivers" value="">
-          <div style="max-width: 400px; margin: 0 auto;">
-            <input type="email" name="email" class="email-input" placeholder="Enter your email" required>
-            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0.75rem;">
-              Send Me the Free Organizer
-            </button>
-          </div>
-        </form>
-        <p class="text-sm text-center mt-4" style="color: var(--text-gray);">No spam. Unsubscribe anytime.</p>
-      </div>
-
-      <!-- Thank You -->
-      <div id="thankyou-section" class="thankyou-section">
-        <div class="estimator-card">
-          <h3 class="section-title text-center">Check your email!</h3>
-          <p class="text-lg text-center">Your free organizer is on the way.</p>
-        </div>
-      </div>
-
-      <!-- Lemon Squeezy Upsell -->
+      <!-- Contact CTA -->
       <div class="estimator-card" style="margin-top: 1.5rem; text-align: center;">
-        <p class="text-lg mb-4">Want the full toolkit? Get the complete Notion template + advanced spreadsheet.</p>
-        <a href="https://projexions.lemonsqueezy.com/buy/bookkeeping-toolkit" class="btn-primary lemonsqueezy-button">
-          Unlock Full Toolkit — $47
-        </a>
+        <h2 class="section-title text-center">Want Help Catching Up?</h2>
+        <p class="text-lg mb-6">Start with a conversation—no commitment required.</p>
+        <div style="margin-top: 1.5rem;">
+          <a href="/contact" class="btn-primary">Get in Touch</a>
+        </div>
       </div>
 
       <div style="text-align: center; margin-top: 1.5rem;">
@@ -127,7 +98,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <!-- Disclaimer -->
     <div class="estimator-disclaimer">
-      <p>This tool provides a high-level estimate for educational purposes only. It does not provide tax, accounting, or bookkeeping services.</p>
+      <p>This tool provides a rough estimate for informational purposes only. Results should not be construed as a quote, proposal, or professional advice.</p>
     </div>
   </div>
 </BaseLayout>
@@ -290,31 +261,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .results-cost-note {
     font-size: 0.875rem;
     color: var(--text-gray);
-  }
-
-  /* Email form */
-  .email-input {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    border: 2px solid var(--ui-gray);
-    border-radius: 4px;
-    font-size: 1rem;
-    font-family: inherit;
-  }
-
-  .email-input:focus {
-    outline: none;
-    border-color: var(--brand-green);
-  }
-
-  /* Thank you */
-  .thankyou-section {
-    display: none;
-    margin-top: 1.5rem;
-  }
-
-  .thankyou-section.active {
-    display: block;
   }
 
   /* Restart */
@@ -551,9 +497,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   const currentQSpan = document.getElementById('current-q');
   const progressFill = document.getElementById('progress-fill');
   const restartBtn = document.getElementById('restart-btn');
-  const emailForm = document.getElementById('email-form');
-  const ctaSection = document.getElementById('cta-section');
-  const thankyouSection = document.getElementById('thankyou-section');
 
   // Start quiz
   function startQuiz() {
@@ -636,11 +579,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       document.getElementById('drivers-section').style.display = 'none';
     }
 
-    document.getElementById('score-field').value = result.score;
-    document.getElementById('tier-field').value = result.tier;
-    document.getElementById('hours-field').value = result.hours;
-    document.getElementById('drivers-field').value = result.drivers.join('; ');
-
     clearState();
   }
 
@@ -651,17 +589,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     heroSection.style.display = 'block';
     reassuranceSection.style.display = 'block';
     startContainer.style.display = 'block';
-    ctaSection.style.display = 'block';
-    thankyouSection.classList.remove('active');
   }
-
-  // Form submission
-  emailForm.addEventListener('submit', function(e) {
-    setTimeout(() => {
-      ctaSection.style.display = 'none';
-      thankyouSection.classList.add('active');
-    }, 100);
-  });
 
   // Event listeners
   startBtn.addEventListener('click', startQuiz);

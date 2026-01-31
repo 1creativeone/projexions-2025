@@ -63,13 +63,55 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <hr class="section-divider">
 
         <h2 class="section-title text-center">Schedule Your Evaluation</h2>
-        <p class="text-lg leading-relaxed mb-12">
+        <p class="text-lg leading-relaxed mb-8">
           If your books are fine, you'll know. If they aren't, you'll finally know why—and what matters most.
         </p>
 
-        <div style="text-align: center; margin-top: 2rem; margin-bottom: 3rem;">
-          <a href="/contact" class="btn-primary">Schedule</a>
-        </div>
+        <form name="evaluation-booking" method="POST" data-netlify="true" class="booking-form">
+          <input type="hidden" name="form-name" value="evaluation-booking" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="day">Preferred Day</label>
+              <select id="day" name="day" required>
+                <option value="">Select a day</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="time">Preferred Time</label>
+              <select id="time" name="time" required>
+                <option value="">Select a time</option>
+                <option value="9:00 AM">9:00 AM</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="1:00 PM">1:00 PM</option>
+                <option value="2:00 PM">2:00 PM</option>
+                <option value="3:00 PM">3:00 PM</option>
+                <option value="4:00 PM">4:00 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 2.5rem;">
+            <button type="submit" class="btn-primary">Request Appointment</button>
+          </div>
+        </form>
 
         <hr class="section-divider">
 
@@ -102,9 +144,55 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     text-align: center;
   }
 
+  .booking-form {
+    max-width: 500px;
+    margin: 0 auto 2rem;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    flex: 1;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-gray);
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--ui-gray);
+    border-radius: 4px;
+    font-size: 1rem;
+    background: white;
+  }
+
+  .form-group select {
+    cursor: pointer;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--brand-green);
+  }
+
   @media (max-width: 768px) {
     .services-card {
       padding: 1.5rem;
+    }
+
+    .form-row {
+      flex-direction: column;
     }
   }
 </style>

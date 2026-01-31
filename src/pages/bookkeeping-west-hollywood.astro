@@ -1,70 +1,43 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-// Local SEO page per PRD Addendum section 3
 ---
 
 <BaseLayout
-  title="Bookkeeping Cleanup — West Hollywood | Projexions"
-  description="Projexions helps West Hollywood businesses get bookkeeping records cleaned up and organized—particularly when a CPA can't proceed, a deadline is approaching, or the current state of the books is unclear."
+  title="Bookkeeping West Hollywood — Projexions"
+  description="Monthly bookkeeping services for small businesses, agencies, and e-commerce sellers. Based in West Hollywood, serving clients nationwide."
   currentPath="/bookkeeping-west-hollywood"
 >
-  <!-- LocalBusiness Schema Markup for Local SEO -->
-  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Projexions",
-    "description": "Professional bookkeeping cleanup and organization for businesses in West Hollywood",
-    "url": "https://projexions.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "West Hollywood",
-      "addressRegion": "CA",
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "34.0900",
-      "longitude": "-118.3617"
-    },
-    "areaServed": {
-      "@type": "City",
-      "name": "West Hollywood"
-    },
-    "serviceType": ["Bookkeeping Cleanup", "Financial Organization", "Tax Preparation Support"],
-    "priceRange": "$$"
-  })} />
-
   <div class="page-container">
-    <h1 class="serif-heading text-4xl font-semibold mb-4 text-center">Bookkeeping Cleanup — West Hollywood</h1>
+    <h1 class="serif-heading text-4xl font-semibold mb-4 text-center">Monthly Bookkeeping</h1>
+    <p class="text-lg leading-relaxed mb-8 text-center" style="color: var(--text-gray);">Based in West Hollywood · Serving clients nationwide</p>
 
     <div class="services-card">
       <div class="prose-content">
-        <h2 class="section-title text-center">Tax Season Exposes What's Been Easy to Ignore</h2>
+        <h2 class="section-title text-center">Orderly Books, Month After Month</h2>
 
         <p class="text-lg leading-relaxed mb-6">
-          When records fall behind, it's rarely obvious until something forces the issue. Tax filing is usually that moment.
+          For businesses that need reliable, ongoing bookkeeping—not just cleanup when things fall apart.
         </p>
 
         <p class="text-lg leading-relaxed mb-12">
-          Projexions helps West Hollywood businesses get bookkeeping records cleaned up and organized—particularly when a CPA can't proceed, a deadline is approaching, or the current state of the books is genuinely unclear.
+          Projexions provides monthly bookkeeping services that keep your records accurate, organized, and ready for reporting, tax filing, or CPA review at any time.
         </p>
 
         <hr class="section-divider">
 
-        <h2 class="section-title text-center">What This Looks Like</h2>
-
-        <p class="text-lg leading-relaxed mb-4">Most cleanup engagements involve some combination of:</p>
+        <h2 class="section-title text-center">What's Included</h2>
 
         <ul class="resource-list text-lg mb-6">
-          <li>Reconciling bank and credit card accounts</li>
-          <li>Sorting out payment processor records (Stripe, Square, PayPal)</li>
-          <li>Cleaning up Shopify and e-commerce platform records</li>
-          <li>Organizing expenses and categorization</li>
-          <li>Clearing the backlog so a CPA can actually file</li>
+          <li>Bank and credit card reconciliation</li>
+          <li>Expense categorization and organization</li>
+          <li>Accounts payable and receivable tracking</li>
+          <li>Payroll recording</li>
+          <li>Stripe, Shopify, and payment processor reconciliation</li>
+          <li>Monthly financial reports</li>
         </ul>
 
         <p class="text-lg leading-relaxed mb-12">
-          Scope depends on how far behind things are and what's actually needed. Some cleanups take days. Others take longer. One recent engagement: a full year reconciled in 12 hours.
+          Services are tailored to what your business actually needs. No unnecessary add-ons.
         </p>
 
         <hr class="section-divider">
@@ -72,35 +45,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2 class="section-title text-center">Who This Is For</h2>
 
         <p class="text-lg leading-relaxed mb-6">
-          Projexions works with small businesses, solo operators, agencies, and e-commerce sellers—primarily in West Hollywood and the surrounding area.
+          Small businesses, solo operators, agencies, and e-commerce sellers who want their books handled consistently—so they can focus on running their business.
         </p>
 
         <p class="text-lg leading-relaxed mb-12">
-          If your books are behind and you're not sure where to start, that's exactly when this help is most useful.
+          If you've cleaned up your books and want to keep them that way, or if you're ready to hand off bookkeeping entirely, this is a good fit.
         </p>
 
         <hr class="section-divider">
 
-        <h2 class="section-title text-center">How It Works</h2>
+        <h2 class="section-title text-center">Pricing</h2>
 
         <p class="text-lg leading-relaxed mb-6">
-          No packages. No tiers. No predetermined scope.
-        </p>
-
-        <p class="text-lg leading-relaxed mb-6">
-          Start with a conversation. Projexions will assess the situation, clarify what's actually needed, and scope the work based on your specific circumstances.
+          Monthly pricing is based on transaction volume, complexity, and the specific services your business needs.
         </p>
 
         <p class="text-lg leading-relaxed mb-12">
-          If cleanup isn't the right move, you'll hear that directly.
+          Start with a conversation to determine scope and fit.
         </p>
 
         <hr class="section-divider">
 
-        <h2 class="section-title text-center">Get in Touch</h2>
+        <h2 class="section-title text-center">Get Started</h2>
 
         <p class="text-lg leading-relaxed mb-6">
-          If tax season has surfaced a problem you've been avoiding, now is the time to address it.
+          Reach out to discuss your bookkeeping needs and see if monthly support is the right fit.
         </p>
 
         <div style="text-align: center; margin-top: 2rem; margin-bottom: 3rem;">
@@ -112,16 +81,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2 class="section-title text-center">Scope & Boundaries</h2>
 
         <p class="text-lg leading-relaxed mb-6">
-          Projexions provides bookkeeping cleanup and organization—not tax advice, tax filing, or CPA services.
+          Projexions provides bookkeeping services—not tax advice, tax filing, or CPA services.
         </p>
 
-        <p class="text-lg leading-relaxed mb-6">
+        <p class="text-lg leading-relaxed">
           Work is scoped individually. No guarantees of outcomes.
         </p>
-
-        <div style="text-align: center; margin-top: 2rem;">
-          <a href="/services" class="btn-primary">View All</a>
-        </div>
       </div>
     </div>
   </div>
