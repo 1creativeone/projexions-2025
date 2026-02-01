@@ -2,7 +2,8 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
 export const GET: APIRoute = async ({ site }) => {
-  const baseUrl = site?.href || 'https://projexions.com';
+  // Remove trailing slash from site URL to avoid double slashes
+  const baseUrl = (site?.href || 'https://projexions.net').replace(/\/$/, '');
   
   // Static pages
   const staticPages = [

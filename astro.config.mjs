@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://projexions.com',
+  site: 'https://projexions.net',
   integrations: [sitemap()],
 });
 
