@@ -19,6 +19,7 @@ const { Content } = await tool.render();
   title={`${tool.data.title} — Projexions`}
   description={tool.data.description}
   currentPath={`/store/${tool.slug}`}
+  includeCheckout={true}
 >
   <!-- Product Schema Markup for SEO -->
   <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify({
