@@ -3,6 +3,11 @@ import BaseLayout from './BaseLayout.astro';
 import BlogDisclaimer from '../components/BlogDisclaimer.astro';
 import { calculateReadingTime, formatReadingTime } from '../utils/readingTime';
 
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
 interface Props {
   title: string;
   description: string;
@@ -13,9 +18,10 @@ interface Props {
   category?: string;
   slug?: string;
   author?: string;
+  faqs?: FAQ[];
 }
 
-const { title, description, heroImage, pubDate, updatedDate, content = '', category, slug, author } = Astro.props;
+const { title, description, heroImage, pubDate, updatedDate, content = '', category, slug, author, faqs } = Astro.props;
 
 const readingTime = content ? formatReadingTime(calculateReadingTime(content)) : null;
 const canonicalURL = Astro.site ? new URL(`/articles/${slug}`, Astro.site).href : '';
@@ -42,7 +48,7 @@ const canonicalURL = Astro.site ? new URL(`/articles/${slug}`, Astro.site).href 
     "publisher": {
       "@type": "Organization",
       "name": "Projexions",
-      "url": Astro.site?.href || "https://projexions.com"
+      "url": Astro.site?.href || "https://projexions.net"
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -50,6 +56,22 @@ const canonicalURL = Astro.site ? new URL(`/articles/${slug}`, Astro.site).href 
     },
     ...(category ? { "articleSection": category } : {})
   })} />
+
+  <!-- FAQ Schema for rich results -->
+  {faqs && faqs.length > 0 && (
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    })} />
+  )}
 
   <article class="page-container">
     <header class="post-header">

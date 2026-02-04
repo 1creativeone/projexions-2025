@@ -20,6 +20,11 @@ const articlesCollection = defineCollection({
     pubDate: z.date(),
     updatedDate: z.date().optional(),
     featured: z.boolean().default(false),
+    // FAQ Schema for rich results
+    faqs: z.array(z.object({
+      question: z.string(),
+      answer: z.string(),
+    })).optional(),
   }),
 });
 
