@@ -1,145 +1,134 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-// Services page per PRD section 5.2
 ---
 
 <BaseLayout
   title="Services — Projexions"
-  description="Projexions provides flexible bookkeeping and financial support tailored to the needs of each business. Engagements range from short-term cleanup and project work to ongoing monthly support."
+  description="Practical bookkeeping solutions for businesses that need to move forward. Monthly bookkeeping, cleanup, and diagnostic tools."
   currentPath="/services"
 >
   <div class="page-container">
-    <h1 class="serif-heading text-4xl font-semibold mb-6 text-center">Services</h1>
+    <h1 class="serif-heading text-4xl font-semibold mb-4 text-center">How Projexions Helps</h1>
+    <p class="text-lg leading-relaxed mb-8 text-center max-w-prose mx-auto">
+      Practical bookkeeping solutions for businesses that need to move forward.
+    </p>
 
     <div class="services-card">
       <div class="prose-content">
+
+        <!-- Monthly Bookkeeping -->
         <h2 class="section-title text-center">Monthly Bookkeeping</h2>
+        <p class="section-subtitle text-center">For established businesses seeking a high-touch, long-term partner.</p>
 
-        <p class="text-lg leading-relaxed mb-6">
-          For businesses that need consistent, ongoing support—not just cleanup.
+        <ul class="resource-list text-lg mb-6">
+          <li><strong>Limited Capacity:</strong> Projexions maintains a small client roster to ensure every account gets technical oversight.</li>
+          <li><strong>Ongoing Maintenance:</strong> Reliable monthly reconciliations and categorization to keep your records stable year-round.</li>
+          <li><strong>Selective Partnerships:</strong> We focus on quality over volume, maintaining a firm-level commitment to your data integrity.</li>
+        </ul>
+
+        <p class="section-link text-center">
+          <a href="/bookkeeping-west-hollywood">View details →</a>
         </p>
-
-        <p class="text-lg leading-relaxed mb-6">
-          Projexions provides monthly bookkeeping services for small businesses, agencies, and e-commerce sellers. This includes reconciliation, expense categorization, payroll recording, accounts payable and receivable tracking, financial reporting, and keeping records organized month to month.
-        </p>
-
-        <p class="text-lg leading-relaxed mb-6">
-          Scope and pricing are tailored to each business based on transaction volume, complexity, and specific needs.
-        </p>
-
-        <div class="section-cta" style="margin-bottom: 3rem;">
-          <div class="hero-actions">
-            <a href="/bookkeeping-west-hollywood" class="btn-primary">Learn more</a>
-          </div>
-        </div>
 
         <hr class="section-divider">
 
+        <!-- Bookkeeping Cleanup -->
         <h2 class="section-title text-center">Bookkeeping Cleanup</h2>
-
-        <p class="text-lg leading-relaxed mb-6">
-          Tax season has a way of surfacing problems that were easy to ignore. If your books are behind and a CPA can't proceed, cleanup is usually the first step.
-        </p>
-
-        <p class="text-lg leading-relaxed mb-6">
-          Projexions provides hands-on bookkeeping cleanup for small businesses, agencies, and e-commerce sellers—particularly those dealing with:
-        </p>
+        <p class="section-subtitle text-center">For businesses that have fallen behind and need to get tax-ready.</p>
 
         <ul class="resource-list text-lg mb-6">
-          <li>Months or years of unreconciled accounts</li>
-          <li>Messy Stripe, Shopify, or payment processor records</li>
-          <li>Expenses that were never properly categorized</li>
-          <li>Records that need to be usable before a tax deadline</li>
+          <li><strong>Catch-Up & Reconciliation:</strong> Reconciling months or years of neglected bank and credit card activity.</li>
+          <li><strong>Platform Stabilization:</strong> Fixing messy data flows from Stripe, Shopify, and e-commerce platforms.</li>
+          <li><strong>CPA Readiness:</strong> Delivering organized, usable records so your tax professional can file without delays.</li>
         </ul>
 
-        <p class="text-lg leading-relaxed mb-6">
-          Scope is determined individually based on how far behind things are and what's actually needed.
+        <p class="section-link text-center">
+          <a href="/bookkeeping-cleanup">Explore the process →</a>
         </p>
 
-        <div class="section-cta" style="margin-bottom: 3rem;">
-          <div class="hero-actions">
-            <a href="/bookkeeping-cleanup" class="btn-primary">Learn more</a>
+        <hr class="section-divider">
+
+        <!-- Diagnostic Tools -->
+        <h2 class="section-title text-center">The Diagnostic Tools</h2>
+        <p class="section-subtitle text-center">Not sure how much help you need? Use these tools to find out.</p>
+
+        <div class="option-block">
+          <h3 class="option-title text-center">Free Bookkeeping Estimator</h3>
+          <p class="text-lg leading-relaxed mb-4">
+            Get an instant, realistic projection of the hours and effort your cleanup will take.
+          </p>
+          <p class="text-lg leading-relaxed mb-2"><strong>How it works:</strong> A 2-minute quiz based on your bank activity and tech stack.</p>
+          <p class="text-lg leading-relaxed mb-4"><strong>Result:</strong> An immediate estimate of time and cost.</p>
+          <div class="section-cta">
+            <a href="/estimator" class="btn-primary">Take the Quiz</a>
           </div>
+        </div>
+
+        <div class="option-block">
+          <h3 class="option-title text-center">Tax Readiness Evaluation</h3>
+          <p class="text-lg leading-relaxed mb-4">
+            A structured, one-time professional review of your current records.
+          </p>
+          <p class="text-lg leading-relaxed mb-4"><strong>Includes:</strong> A 60-minute call and a written Tax Readiness Map (PDF).</p>
+          <p class="section-link text-center">
+            <a href="/tax-season-bookkeeping-readiness">View evaluation details →</a>
+          </p>
         </div>
 
         <hr class="section-divider">
 
-        <h2 class="section-title text-center">Behind in Your Bookkeeping?</h2>
-
-        <p class="text-lg leading-relaxed mb-6">
-          For businesses that aren't sure whether they need cleanup—or can handle it themselves—Projexions offers a one-time Tax Season Readiness evaluation.
-        </p>
-
-        <p class="text-lg leading-relaxed mb-6">
-          This is a 60-minute call plus a written assessment of where things actually are, what needs attention before filing, and what can wait.
-        </p>
-
-        <p class="text-lg leading-relaxed mb-6">
-          From there, options are clear: hire Projexions for cleanup, tackle it yourself with the right tools, or hand the map to someone else.
-        </p>
-
-        <p class="text-lg leading-relaxed mb-6">
-          If you move forward with cleanup, the evaluation fee is credited toward the engagement.
-        </p>
-
-        <div class="section-cta" style="margin-bottom: 3rem;">
-          <div class="hero-actions">
-            <a href="/tax-season-bookkeeping-readiness" class="btn-primary">Learn more</a>
-          </div>
-        </div>
-
-        <hr class="section-divider">
-
+        <!-- Bookkeeper Hiring Help -->
         <h2 class="section-title text-center">Bookkeeper Hiring Help</h2>
+        <p class="section-subtitle text-center">For businesses about to hire who want a technical second opinion.</p>
 
         <p class="text-lg leading-relaxed mb-6">
-          Hiring the wrong bookkeeper leads to months of cleanup, confusion, and avoidable cost.
+          <strong>The Result:</strong> A written risk summary identifying technical red flags and competency signals before you sign a contract.
         </p>
 
-        <p class="text-lg leading-relaxed mb-6">
-          Projexions offers a second opinion before you make a hire—a pre-hire risk check focused on role fit and observable signals.
+        <p class="section-link text-center">
+          <a href="/hiring-help">Review the process →</a>
         </p>
 
-        <p class="text-lg leading-relaxed mb-4">This includes:</p>
+        <hr class="section-divider">
 
-        <ul class="resource-list text-lg mb-6">
-          <li>Review of role context and responsibilities</li>
-          <li>Review of interview notes or a recorded interview</li>
-          <li>Written risk summary identifying competency signals, red flags, and areas to verify</li>
-        </ul>
+        <!-- FAQ -->
+        <h2 class="section-title text-center">Frequently Asked Questions</h2>
 
-        <p class="text-lg leading-relaxed mb-6 text-center">
-          <strong>Fee:</strong> $250<br>
-          <strong>Delivery:</strong> 24–48 hours
-        </p>
+        <div class="faq-item">
+          <h3 class="text-lg font-semibold mb-2">How long does a cleanup take?</h3>
+          <p class="text-lg leading-relaxed mb-4">
+            It depends on complexity. Some take a few days; others take longer. We once reconciled a full year in 12 hours.
+          </p>
+        </div>
 
-        <p class="text-lg leading-relaxed mb-6">
-          This service does not include hiring decisions, HR advice, or guarantees. Its purpose is to reduce obvious hiring risk before a commitment is made.
-        </p>
+        <div class="faq-item">
+          <h3 class="text-lg font-semibold mb-2">How much will this cost?</h3>
+          <p class="text-lg leading-relaxed mb-4">
+            We scope by project complexity rather than fixed packages. Use the <a href="/estimator">Estimator</a> for an instant projection.
+          </p>
+        </div>
 
-        <div class="section-cta" style="margin-bottom: 3rem;">
-          <div class="hero-actions">
-            <a href="/contact" class="btn-primary">Request Help</a>
-          </div>
+        <div class="faq-item">
+          <h3 class="text-lg font-semibold mb-2">Why a developer-led approach?</h3>
+          <p class="text-lg leading-relaxed mb-4">
+            It allows us to fix broken data flows (like Stripe or Shopify) more precisely than manual data entry.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="text-lg font-semibold mb-2">Do you provide tax filing?</h3>
+          <p class="text-lg leading-relaxed mb-6">
+            No. Projexions provides organized data so your CPA can file accurately and easily.
+          </p>
         </div>
 
         <hr class="section-divider">
 
-        <h2 class="section-title text-center">Scope & Boundaries</h2>
+        <!-- Important Boundaries -->
+        <h2 class="section-title text-center">Important Boundaries</h2>
 
-        <p class="text-lg leading-relaxed mb-6">
-          Projexions provides bookkeeping cleanup and organizational support—not professional advice.
-        </p>
-
-        <ul class="resource-list text-lg mb-6">
-          <li>No tax advice or tax filing</li>
-          <li>No accounting opinions or audits</li>
-          <li>No legal or financial advice</li>
-          <li>No guarantees of outcomes</li>
-        </ul>
-
-        <p class="text-lg leading-relaxed mb-6">
-          Work is scoped individually based on complexity, timing, and fit.
+        <p class="text-lg leading-relaxed">
+          Projexions provides organizational review and bookkeeping stabilization only. No accounting, tax, legal, or financial advice is provided.
         </p>
       </div>
     </div>
@@ -164,6 +153,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .section-cta {
     text-align: center;
+  }
+
+  .section-link {
+    margin-top: 1rem;
+  }
+
+  .section-link a {
+    color: var(--brand-green);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .section-link a:hover {
+    cursor: pointer;
+  }
+
+  .dual-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .section-subtitle {
+    color: var(--text-gray);
+    margin-bottom: 1.5rem;
+  }
+
+  .faq-item {
+    margin-bottom: 1rem;
+  }
+
+  .option-block {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: var(--bg-section-alt);
+    border-radius: 4px;
+  }
+
+  .option-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--brand-green);
   }
 
   @media (max-width: 768px) {

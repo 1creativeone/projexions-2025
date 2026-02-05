@@ -1,0 +1,243 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// FAQ data for schema and display
+const faqs = [
+  {
+    question: "How do you handle Shopify payouts that don't match my bank deposits?",
+    answer: "This is usually caused by a mix of processing fees, refunds, and timing delays. Projexions reconciles the raw data directly from Shopify and Stripe to ensure every dollar is accounted for, mapping the \"missing\" fees to the correct expense accounts."
+  },
+  {
+    question: "Can you fix a year of messy Stripe data in time for tax season?",
+    answer: "Yes. Projexions specializes in \"Rescue\" work for high-volume sellers. We audit your payout history, identify the integration errors causing the mess, and deliver clean records to your CPA."
+  },
+  {
+    question: "Why shouldn't I just use a generic automated app to sync my sales?",
+    answer: "Automated apps often \"dump\" data into your books without verifying it. If the integration breaks, the errors compound. Projexions provides a developer-led audit to ensure the \"plumbing\" between your store and your ledger is actually working."
+  },
+  {
+    question: "Which accounting software do you recommend for Shopify?",
+    answer: "Projexions works primarily with QuickBooks Online and Xero, as they offer the most robust API connections for e-commerce platforms and third-party apps."
+  }
+];
+---
+
+<BaseLayout
+  title="Shopify & Stripe Bookkeeping West Hollywood | Projexions"
+  description="Projexions provides expert Shopify bookkeeping and Stripe reconciliation for e-commerce businesses in West Hollywood and nationwide. Get your records tax-ready."
+  currentPath="/shopify-bookkeeping"
+>
+  <!-- LocalBusiness Schema -->
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Projexions",
+    "description": "Shopify bookkeeping and Stripe reconciliation for e-commerce businesses in West Hollywood",
+    "url": "https://projexions.net",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "West Hollywood",
+      "addressRegion": "CA",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "34.0900",
+      "longitude": "-118.3617"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "West Hollywood"
+    },
+    "serviceType": ["Shopify Bookkeeping", "Stripe Reconciliation", "E-commerce Cleanup"],
+    "priceRange": "$$"
+  })} />
+
+  <!-- FAQ Schema -->
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  })} />
+
+  <div class="page-container">
+    <h1 class="serif-heading text-4xl font-semibold mb-4 text-center">Shopify Bookkeeping & Stripe Reconciliation</h1>
+    <p class="text-lg leading-relaxed mb-8 text-center" style="color: var(--text-gray);">Based in West Hollywood · Serving clients nationwide</p>
+
+    <div class="services-card">
+      <div class="prose-content">
+        <!-- Hero Section -->
+        <h2 class="section-title text-center">Precision Recordkeeping for E-commerce Founders</h2>
+
+        <p class="text-lg leading-relaxed mb-6">
+          E-commerce bookkeeping isn't just about data entry; it's about managing the complex flow between your storefront, your payment processor, and your bank. Projexions stabilizes these integrations to ensure every payout is accounted for.
+        </p>
+
+        <div class="section-cta" style="margin-bottom: 2rem;">
+          <a href="/estimator" class="btn-primary">Try the Quick Estimator →</a>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Specialized Services -->
+        <h2 class="section-title text-center">Specialized E-commerce Services</h2>
+
+        <ul class="resource-list text-lg mb-6">
+          <li><strong>Stripe & PayPal Audits:</strong> We reconcile gross sales against net payouts, ensuring processing fees and refunds are mapped correctly.</li>
+          <li><strong>Shopify Integration Repair:</strong> We identify and fix the data breaks between Shopify and QuickBooks Online/Xero that lead to duplicated income or missing expenses.</li>
+          <li><strong>Inventory & COGS Tracking:</strong> Helping you maintain a clear view of your margins by organizing your cost of goods sold.</li>
+          <li><strong>Sales Tax Organization:</strong> Preparing your reports for seamless sales tax filing.</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <!-- Why Projexions -->
+        <h2 class="section-title text-center">Why Projexions for E-commerce?</h2>
+
+        <p class="text-lg leading-relaxed mb-6">
+          <strong>Systems-First Logic:</strong> Most bookkeepers approach e-commerce manually. Projexions uses a developer's perspective to audit the "plumbing" of your tech stack. We don't just fix the numbers; we fix the systems that create them.
+        </p>
+
+        <hr class="section-divider">
+
+        <!-- FAQ Section -->
+        <h2 class="section-title text-center">Frequently Asked Questions</h2>
+
+        <div class="faq-accordion">
+          {faqs.map((faq) => (
+            <details class="faq-item">
+              <summary class="faq-question">{faq.question}</summary>
+              <p class="faq-answer">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- CTA -->
+        <h2 class="section-title text-center">Get in Touch</h2>
+
+        <p class="text-lg leading-relaxed mb-6">
+          If your Shopify or Stripe records are behind, now is the time to address it.
+        </p>
+
+        <div class="section-cta" style="margin-bottom: 2rem;">
+          <a href="/contact" class="btn-primary">Contact</a>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Scope -->
+        <h2 class="section-title text-center">Scope & Boundaries</h2>
+
+        <p class="text-lg leading-relaxed mb-6">
+          Projexions provides bookkeeping cleanup and organization—not tax advice, tax filing, or CPA services.
+        </p>
+
+        <p class="text-lg leading-relaxed">
+          Work is scoped individually. No guarantees of outcomes.
+        </p>
+      </div>
+    </div>
+
+    <p class="text-center text-sm" style="color: var(--text-gray); margin-top: 2rem;">
+      Serving West Hollywood and e-commerce businesses nationwide.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .services-card {
+    background: white;
+    border: 1px solid var(--ui-gray);
+    padding: 2.5rem;
+    border-radius: 4px;
+    max-width: 750px;
+    margin: 0 auto 2rem;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--ui-gray);
+    margin: 2.5rem 0;
+  }
+
+  .section-cta {
+    text-align: center;
+  }
+
+  /* FAQ Accordion Styles */
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    border: 1px solid var(--ui-gray);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-charcoal);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::after {
+    content: '+';
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--brand-green);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: '−';
+  }
+
+  .faq-item[open] .faq-question {
+    border-bottom: 1px solid var(--ui-gray);
+    background-color: var(--bg-off-white);
+  }
+
+  .faq-answer {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-gray);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .services-card {
+      padding: 1.5rem;
+    }
+
+    .faq-question {
+      padding: 0.875rem 1rem;
+    }
+
+    .faq-answer {
+      padding: 0.875rem 1rem;
+    }
+  }
+</style>

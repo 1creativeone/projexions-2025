@@ -1,6 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-// About page per PRD section 5.7
+
+// FAQ data for schema and display
+const faqs = [
+  {
+    question: "Do I need to be in West Hollywood to work with Projexions?",
+    answer: "No. While Projexions is based in West Hollywood, the firm serves small businesses, agencies, and e-commerce sellers nationwide using a secure, 100% digital workflow."
+  },
+  {
+    question: "What is the difference between Projexions and my CPA?",
+    answer: "Your CPA focuses on tax strategy and filing. Projexions focuses on the \"ground-level\" organization of your records. We provide the clean data your CPA needs so they don't have to charge you their higher hourly rates for cleanup."
+  },
+  {
+    question: "How much will my project cost?",
+    answer: "Every business is different. Projexions scopes work based on transaction volume and technical complexity. You can use our 2-Minute Estimator for an instant projection of your cleanup costs."
+  }
+];
 ---
 
 <BaseLayout
@@ -8,6 +23,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Projexions provides bookkeeping cleanup and monthly support for small businesses. Based in West Hollywood, serving clients nationwide."
   currentPath="/about"
 >
+  <!-- FAQ Schema -->
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  })} />
   <div class="page-container">
     <h1 class="serif-heading text-4xl font-semibold mb-6 text-center">About Projexions</h1>
 
@@ -16,56 +44,77 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2 class="section-title text-center">What Projexions Does</h2>
 
         <p class="text-lg leading-relaxed mb-6">
-          Projexions helps small businesses get bookkeeping records cleaned up, organized, and maintained—whether that means catching up on a backlog or keeping books in order month to month.
+          Projexions helps small businesses get their bookkeeping records organized and up to date for tax preparation and review.
         </p>
 
+        <ul class="resource-list text-lg mb-6">
+          <li>Bookkeeping cleanup and catch-up</li>
+          <li>Record organization and consistency</li>
+          <li>Preparation for CPA or tax professional review</li>
+          <li>Practical support when books are behind or unclear</li>
+        </ul>
+
         <p class="text-lg leading-relaxed mb-12">
-          This includes reconciling accounts, sorting out payment processor records, categorizing expenses, and getting everything into a state where it's ready for tax filing, CPA review, or ongoing reporting.
+          Projexions has operated for 11 years, providing bookkeeping cleanup and ongoing support to businesses that need reliable records.
         </p>
 
         <hr class="section-divider">
 
         <h2 class="section-title text-center">Who Projexions Works With</h2>
-        <p class="text-lg leading-relaxed mb-6">
-          Based in West Hollywood, Projexions works with small businesses nationwide.
-        </p>
 
-        <p class="text-lg leading-relaxed mb-4">Typical clients include:</p>
+        <p class="text-lg leading-relaxed mb-6">
+          Based in West Hollywood, Projexions works with small businesses nationwide that need help getting their books in order.
+        </p>
 
         <ul class="resource-list text-lg mb-12">
           <li>Solo founders and independent operators</li>
-          <li>E-commerce sellers using Shopify, Stripe, or other platforms</li>
+          <li>Ecommerce businesses using platforms and payment processors</li>
           <li>Small agencies with inconsistent or neglected records</li>
           <li>Businesses approaching tax season without confidence in their books</li>
         </ul>
 
         <hr class="section-divider">
 
-        <h2 class="section-title text-center">Background</h2>
+        <h2 class="section-title text-center">How Projexions Helps</h2>
+
         <p class="text-lg leading-relaxed mb-6">
-          Projexions has operated for 11 years, providing bookkeeping cleanup and ongoing support to businesses that need reliable records.
+          Projexions focuses on the essentials needed to make bookkeeping usable.
         </p>
 
-        <p class="text-lg leading-relaxed mb-12">
-          The focus has always been practical: get books into a usable state and keep them that way.
-        </p>
+        <ul class="resource-list text-lg mb-12">
+          <li>Organizing transactions and accounts</li>
+          <li>Cleaning up prior periods when needed</li>
+          <li>Improving recordkeeping processes</li>
+          <li>Supporting handoff to a CPA or tax preparer</li>
+        </ul>
 
         <hr class="section-divider">
 
         <h2 class="section-title text-center">Scope of Work</h2>
+
         <p class="text-lg leading-relaxed mb-6">
-          Projexions provides bookkeeping services—cleanup, monthly support, and organization—not professional advice.
+          Projexions provides bookkeeping support and organizational help.
         </p>
 
         <ul class="resource-list text-lg mb-6">
           <li>No tax filing or tax advice</li>
           <li>No audits or formal accounting opinions</li>
-          <li>No lender or compliance preparation services</li>
+          <li>No legal or financial advice</li>
+          <li>Work is scoped based on bookkeeping needs and timing</li>
         </ul>
 
-        <p class="text-lg leading-relaxed mb-6">
-          Work is scoped individually based on bookkeeping needs and timing.
-        </p>
+        <hr class="section-divider">
+
+        <h2 class="section-title text-center">Frequently Asked Questions</h2>
+
+        <div class="faq-accordion">
+          {faqs.map((faq) => (
+            <details class="faq-item">
+              <summary class="faq-question">{faq.question}</summary>
+              <p class="faq-answer">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
 
         <div style="text-align: center; margin-top: 2rem;">
           <a href="/contact" class="btn-primary">Contact</a>
@@ -91,15 +140,71 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin: 2.5rem 0;
   }
 
-  .closing-statement {
-    padding: 1rem 0 1rem 1.5rem;
-    border-left: 3px solid var(--brand-green);
-    font-style: italic;
+  /* FAQ Accordion Styles */
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    border: 1px solid var(--ui-gray);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-charcoal);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::after {
+    content: '+';
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--brand-green);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: '−';
+  }
+
+  .faq-item[open] .faq-question {
+    border-bottom: 1px solid var(--ui-gray);
+    background-color: var(--bg-off-white);
+  }
+
+  .faq-answer {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-gray);
+    margin: 0;
   }
 
   @media (max-width: 768px) {
     .about-card {
       padding: 1.5rem;
+    }
+
+    .faq-question {
+      padding: 0.875rem 1rem;
+    }
+
+    .faq-answer {
+      padding: 0.875rem 1rem;
     }
   }
 </style>

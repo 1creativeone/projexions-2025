@@ -1,0 +1,220 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// FAQ data for schema and display
+const faqs = [
+  {
+    question: "Why pay $250 for a second opinion on a hire?",
+    answer: "A bad bookkeeper can cost thousands in cleanup fees and missed deductions. This $250 assessment is a \"technical gut-check\" that identifies red flags before you make a long-term commitment."
+  },
+  {
+    question: "Does Projexions provide HR or legal advice for hiring?",
+    answer: "No. Projexions provides a technical competency assessment only. All final hiring decisions and HR compliance remain the responsibility of your company."
+  }
+];
+---
+
+<BaseLayout
+  title="Bookkeeper Hiring Help — Projexions"
+  description="Reduce the risk of a bad bookkeeper hire with a professional second opinion. $250 flat fee, 24-48 hour delivery."
+  currentPath="/hiring-help"
+>
+  <!-- FAQ Schema -->
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  })} />
+  <div class="page-container">
+    <h1 class="serif-heading text-4xl font-semibold mb-4 text-center">Bookkeeper Hiring Help</h1>
+    <p class="text-lg leading-relaxed mb-2 text-center max-w-prose mx-auto">
+      Verify technical competency before you sign the contract.
+    </p>
+    <p class="text-2xl font-semibold mb-8 text-center" style="color: var(--brand-green);">
+      $250 Flat Fee (Vetting for up to 3 Finalists)
+    </p>
+
+    <div class="hiring-card">
+      <div class="prose-content">
+
+        <h2 class="section-title text-center">Why a Second Opinion?</h2>
+
+        <p class="text-lg leading-relaxed mb-6">
+          Hiring the wrong bookkeeper can lead to months of cleanup, confusion, and avoidable cost. Most business owners can interview for culture, but verifying technical competency signals requires a different lens. Projexions provides a pre-hire risk check designed to highlight observable signals before you make a long-term commitment.
+        </p>
+
+        <p class="text-lg leading-relaxed mb-6">
+          <strong>The ROI of Vetting:</strong> One month of fixing a bad hire's mistakes usually costs 10x the price of this assessment. For a flat $250, we vet up to three of your top finalists, turning a high-stakes guessing game into a data-backed executive decision. It is the cheapest insurance policy you can buy for your back office.
+        </p>
+
+        <hr class="section-divider">
+
+        <h2 class="section-title text-center">What This Service Includes</h2>
+
+        <div class="service-item">
+          <h3 class="text-lg font-semibold mb-2">Role Context Review</h3>
+          <p class="text-lg leading-relaxed mb-4">
+            We analyze the specific technical requirements and responsibilities of the position.
+          </p>
+        </div>
+
+        <div class="service-item">
+          <h3 class="text-lg font-semibold mb-2">Interview Assessment</h3>
+          <p class="text-lg leading-relaxed mb-4">
+            We review your interview notes or a recorded interview to identify technical competency signals.
+          </p>
+        </div>
+
+        <div class="service-item">
+          <h3 class="text-lg font-semibold mb-2">Risk Summary Report</h3>
+          <p class="text-lg leading-relaxed mb-4">
+            A written assessment delivered within 24–48 hours, including:
+          </p>
+          <ul class="resource-list text-lg mb-6">
+            <li><strong>Competency Signals:</strong> Highlighting what the candidate demonstrated well.</li>
+            <li><strong>Red Flags:</strong> Observable patterns or responses that suggest a lack of fit.</li>
+            <li><strong>Verification Areas:</strong> Specific questions to ask or skills to verify before extending an offer.</li>
+          </ul>
+        </div>
+
+        <hr class="section-divider">
+
+        <h2 class="section-title text-center">Scope of Service</h2>
+
+        <p class="text-lg leading-relaxed mb-6">
+          This is a diagnostic risk-check, not a recruitment or HR service.
+        </p>
+
+        <ul class="resource-list text-lg mb-6">
+          <li><strong>No Hiring Decisions:</strong> Projexions identifies risks; the final hiring decision remains with your company.</li>
+          <li><strong>No Guarantees:</strong> This service reduces obvious risk but does not guarantee candidate performance or professional qualifications.</li>
+          <li><strong>No HR Advice:</strong> We do not provide legal or HR advice regarding employment law, contracts, or background checks.</li>
+          <li><strong>Informational Only:</strong> Its purpose is to provide you with more data to make an informed decision.</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <h2 class="section-title text-center">Frequently Asked Questions</h2>
+
+        <div class="faq-accordion">
+          {faqs.map((faq) => (
+            <details class="faq-item">
+              <summary class="faq-question">{faq.question}</summary>
+              <p class="faq-answer">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="section-cta">
+          <a href="/contact" class="btn-primary">Request</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .hiring-card {
+    background: white;
+    border: 1px solid var(--ui-gray);
+    padding: 2.5rem;
+    border-radius: 4px;
+    max-width: 750px;
+    margin: 0 auto 2rem;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--ui-gray);
+    margin: 2.5rem 0;
+  }
+
+  .section-cta {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .service-item {
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--brand-green);
+  }
+
+  /* FAQ Accordion Styles */
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    border: 1px solid var(--ui-gray);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-charcoal);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question::after {
+    content: '+';
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--brand-green);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: '−';
+  }
+
+  .faq-item[open] .faq-question {
+    border-bottom: 1px solid var(--ui-gray);
+    background-color: var(--bg-off-white);
+  }
+
+  .faq-answer {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-gray);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .hiring-card {
+      padding: 1.5rem;
+    }
+
+    .faq-question {
+      padding: 0.875rem 1rem;
+    }
+
+    .faq-answer {
+      padding: 0.875rem 1rem;
+    }
+  }
+</style>

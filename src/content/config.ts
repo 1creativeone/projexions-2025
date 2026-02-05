@@ -20,6 +20,7 @@ const articlesCollection = defineCollection({
     pubDate: z.date(),
     updatedDate: z.date().optional(),
     featured: z.boolean().default(false),
+    author: z.string().optional(),
     // FAQ Schema for rich results
     faqs: z.array(z.object({
       question: z.string(),

@@ -1,11 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-// Homepage per PRD section 5.1
 ---
 
 <BaseLayout
-  title="Projexions — Bookkeeping Cleanup & Monthly Support"
-  description="Flexible bookkeeping and financial support for growing businesses in West Hollywood. Get practical insights, resources, and tools to bring clarity to your business finances."
+  title="Bookkeeping Cleanup West Hollywood | Projexions"
+  description="Projexions specializes in Shopify, Stripe, and bookkeeping cleanup for West Hollywood businesses. Get tax-ready records without the panic."
   currentPath="/"
 >
   <!-- Hero Section -->
@@ -13,11 +12,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <div class="hero-content">
         <h1 class="hero-title serif-heading">Financial Clarity When Records Matter</h1>
-        <p class="hero-subtitle">Projexions helps businesses bring order to bookkeeping records—particularly when things have fallen behind, tax filing is approaching, or a CPA can't proceed without cleanup.</p>
+        <p class="hero-subtitle">Projexions brings order to bookkeeping records—particularly when things have fallen behind, tax filing is approaching, or a CPA can't proceed without cleanup.</p>
         <p class="hero-body">Based in West Hollywood, serving small businesses, agencies, and e-commerce sellers nationwide.</p>
         <div class="hero-actions">
           <a href="/services" class="btn-primary">View Services</a>
         </div>
+        <a href="/estimator" class="estimator-cta">Not sure how far behind you are? Try the Quick Estimator →</a>
       </div>
     </div>
   </section>
@@ -31,20 +31,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
       <div class="section-content-wide">
         <p class="text-xl leading-relaxed mb-8">
-          Projexions helps businesses get their books into a clear, reliable state—and keep them that way. Cleanup, ongoing support, or both.
+          Projexions helps businesses get their books into a clear, reliable state—and keep them that way. Whether you are facing a multi-year backlog or simply need a steady hand for monthly maintenance, the firm provides structured, project-based support tailored to your specific needs.
         </p>
 
         <ul class="homepage-list">
-          <li>Catch-up and cleanup for months or years of backlog</li>
-          <li>Monthly bookkeeping and reconciliations</li>
-          <li>Stripe, Shopify, and payment processor reconciliation</li>
-          <li>Expense categorization and organization</li>
-          <li>Preparing records for CPA or tax filing</li>
+          <li><strong>Cleanup & Catch-Up:</strong> Reconciling months or years of neglected bank and credit card activity.</li>
+          <li><strong>Monthly Bookkeeping:</strong> Regular reconciliations and categorization to maintain ongoing record integrity.</li>
+          <li><strong>Platform Specialization:</strong> Expert reconciliation for Stripe, Shopify, and payment processors where automated data often breaks.</li>
+          <li><strong>Expense Organization:</strong> Sorting and categorizing transactions to ensure clear separation between business and personal activity.</li>
+          <li><strong>Tax Readiness:</strong> Preparing organized, usable records for seamless handoff to your CPA or tax preparer.</li>
         </ul>
-
-        <p class="text-xl leading-relaxed mt-8">
-          Scope is based on what your business actually needs.
-        </p>
       </div>
     </div>
   </section>
@@ -62,3 +58,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .estimator-cta {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--brand-green);
+    text-decoration: none;
+    background-color: rgba(27, 58, 47, 0.08);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+</style>
