@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://projexions.com/sitemap.xml
+Sitemap: https://projexions.net/sitemap.xml
